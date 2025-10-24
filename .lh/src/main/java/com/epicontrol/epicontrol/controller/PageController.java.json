@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/main/java/com/epicontrol/epicontrol/controller/PageController.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1761267119722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761267336012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,13 @@\n package com.epicontrol.epicontrol.controller;\n \n+import org.springframework.stereotype.Controller;\n+import org.springframework.web.bind.annotation.GetMapping;\n+\n+@Controller\n public class PageController {\n-  \n+\n+    @GetMapping(\"/login\")\n+    public String showLoginPage() {\n+        return \"Login\"; // Retorna o nome do arquivo HTML (Login.html)\n+    }\n }\n"
+                },
+                {
+                    "date": 1761267382154,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,7 +7,7 @@\n public class PageController {\n \n     @GetMapping(\"/login\")\n     public String showLoginPage() {\n-        return \"Login\"; // Retorna o nome do arquivo HTML (Login.html)\n+        return \"Login\"; \n     }\n }\n"
+                },
+                {
+                    "date": 1761267570513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,5 +9,10 @@\n     @GetMapping(\"/login\")\n     public String showLoginPage() {\n         return \"Login\"; \n     }\n+\n+    @GetMapping(\"/register\")\n+    public String showRegisterPage() {\n+        return \"register\"; // Retorna o nome do arquivo HTML (register.html)\n+    }\n }\n"
+                },
+                {
+                    "date": 1761267743968,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,13 @@\n \n @Controller\n public class PageController {\n \n+    @GetMapping(\"/\")\n+    public String showHomePage() {\n+        return \"home\"; // Retorna o nome do arquivo HTML (home.html)\n+    }\n+\n     @GetMapping(\"/login\")\n     public String showLoginPage() {\n         return \"Login\"; \n     }\n"
+                },
+                {
+                    "date": 1761267757643,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,13 +5,8 @@\n \n @Controller\n public class PageController {\n \n-    @GetMapping(\"/\")\n-    public String showHomePage() {\n-        return \"home\"; // Retorna o nome do arquivo HTML (home.html)\n-    }\n-\n     @GetMapping(\"/login\")\n     public String showLoginPage() {\n         return \"Login\"; \n     }\n"
+                }
+            ],
+            "date": 1761267119722,
+            "name": "Commit-0",
+            "content": "package com.epicontrol.epicontrol.controller;\n\npublic class PageController {\n  \n}\n"
+        }
+    ]
+}

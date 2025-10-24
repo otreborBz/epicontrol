@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/resources/templates/style.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1761266710097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1761266710097,
+            "name": "Commit-0",
+            "content": "/* Estilos gerais para a página */\nbody {\n    margin: 0;\n    font-family: Arial, sans-serif;\n    background-color: #f0f2f5;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    height: 100vh;\n}\n\n/* Container principal do formulário de login */\n.login-container {\n    background-color: #ffffff;\n    padding: 2rem;\n    border-radius: 8px;\n    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n    width: 100%;\n    max-width: 400px;\n}\n\n/* Formulário */\n.login-form h1 {\n    margin-bottom: 1.5rem;\n    font-size: 2rem;\n    text-align: center;\n    color: #333;\n}\n\n/* Grupos de input (label + input) */\n.input-group {\n    margin-bottom: 1rem;\n}\n\n.input-group label {\n    display: block;\n    margin-bottom: 0.5rem;\n    color: #555;\n}\n\n.input-group input {\n    width: 100%;\n    padding: 0.75rem;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    box-sizing: border-box; /* Garante que padding não afete a largura total */\n}\n\n/* Botão de submit */\nbutton {\n    width: 100%;\n    padding: 0.75rem;\n    border: none;\n    border-radius: 4px;\n    background-color: #007bff;\n    color: white;\n    font-size: 1rem;\n    cursor: pointer;\n    transition: background-color 0.3s ease;\n}\n\nbutton:hover {\n    background-color: #0056b3;\n}\n\n/* Links inferiores */\n.bottom-links {\n    margin-top: 1rem;\n    display: flex;\n    justify-content: space-between;\n}\n\n.bottom-links a {\n    color: #007bff;\n    text-decoration: none;\n    font-size: 0.9rem;\n}\n\n.bottom-links a:hover {\n    text-decoration: underline;\n}\n"
+        }
+    ]
+}

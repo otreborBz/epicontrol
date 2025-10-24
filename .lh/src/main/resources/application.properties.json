@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/main/resources/application.properties",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1761268406887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761268520185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,6 @@\n # Desabilita o cache do Thymeleaf para ver as alterações em HTML imediatamente\n spring.thymeleaf.cache=false\n \n # Firebase Configuration\n-firebase.api.key=AIzaSyBBxF_XNUkyMwfLo1OWgrqGpgqGj6cfj8A\n\\ No newline at end of file\n+firebase.api.key=AIzaSyBBxF_XNUkyMwfLo1OWgrqGpgqGj6cfj8A\n+firebase.auth.url=https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1761268406887,
+            "name": "Commit-0",
+            "content": "spring.application.name=epicontrol\n\n\n# Desabilita o cache do Thymeleaf para ver as alterações em HTML imediatamente\nspring.thymeleaf.cache=false\n\n# Firebase Configuration\nfirebase.api.key=AIzaSyBBxF_XNUkyMwfLo1OWgrqGpgqGj6cfj8A"
+        }
+    ]
+}

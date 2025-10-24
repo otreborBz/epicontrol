@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/main/java/com/epicontrol/epicontrol/service/FirebaseAuth.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1761268365390,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761268520469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,47 @@\n package com.epicontrol.epicontrol.service;\n \n+import org.springframework.beans.factory.annotation.Value;\n+import org.springframework.http.HttpEntity;\n+import org.springframework.http.HttpHeaders;\n+import org.springframework.http.MediaType;\n+import org.springframework.stereotype.Service;\n+import org.springframework.web.client.HttpClientErrorException;\n+import org.springframework.web.client.RestTemplate;\n+\n+import java.util.HashMap;\n+import java.util.Map;\n+\n+@Service\n public class FirebaseAuth {\n-  \n+\n+    @Value(\"${firebase.api.key}\")\n+    private String firebaseApiKey;\n+\n+    @Value(\"${firebase.auth.url}\")\n+    private String firebaseAuthUrl;\n+\n+    private final RestTemplate restTemplate = new RestTemplate();\n+\n+    public boolean authenticate(String email, String password) {\n+        String url = firebaseAuthUrl + \"?key=\" + firebaseApiKey;\n+\n+        HttpHeaders headers = new HttpHeaders();\n+        headers.setContentType(MediaType.APPLICATION_JSON);\n+\n+        Map<String, Object> requestBody = new HashMap<>();\n+        requestBody.put(\"email\", email);\n+        requestBody.put(\"password\", password);\n+        requestBody.put(\"returnSecureToken\", true);\n+\n+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);\n+\n+        try {\n+            restTemplate.postForEntity(url, entity, String.class);\n+            return true; // Autenticação bem-sucedida\n+        } catch (HttpClientErrorException e) {\n+            // Log do erro pode ser útil aqui (e.g., e.getStatusCode(), e.getResponseBodyAsString())\n+            System.err.println(\"Erro na autenticação com Firebase: \" + e.getMessage());\n+            return false; // Falha na autenticação\n+        }\n+    }\n }\n"
+                },
+                {
+                    "date": 1761268715135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,10 +34,12 @@\n         requestBody.put(\"returnSecureToken\", true);\n \n         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);\n \n+        System.out.println(\"Enviando requisição de autenticação para o Firebase...\");\n         try {\n             restTemplate.postForEntity(url, entity, String.class);\n+            System.out.println(\"Firebase respondeu com sucesso!\");\n             return true; // Autenticação bem-sucedida\n         } catch (HttpClientErrorException e) {\n             // Log do erro pode ser útil aqui (e.g., e.getStatusCode(), e.getResponseBodyAsString())\n             System.err.println(\"Erro na autenticação com Firebase: \" + e.getMessage());\n"
+                },
+                {
+                    "date": 1761268728994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,12 +34,10 @@\n         requestBody.put(\"returnSecureToken\", true);\n \n         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);\n \n-        System.out.println(\"Enviando requisição de autenticação para o Firebase...\");\n         try {\n             restTemplate.postForEntity(url, entity, String.class);\n-            System.out.println(\"Firebase respondeu com sucesso!\");\n             return true; // Autenticação bem-sucedida\n         } catch (HttpClientErrorException e) {\n             // Log do erro pode ser útil aqui (e.g., e.getStatusCode(), e.getResponseBodyAsString())\n             System.err.println(\"Erro na autenticação com Firebase: \" + e.getMessage());\n"
+                }
+            ],
+            "date": 1761268365390,
+            "name": "Commit-0",
+            "content": "package com.epicontrol.epicontrol.service;\n\npublic class FirebaseAuth {\n  \n}\n"
+        }
+    ]
+}

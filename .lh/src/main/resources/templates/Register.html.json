@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/main/resources/templates/Register.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1761267570316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761267627292,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,18 @@\n     <div class=\"login-container\">\n       <form action=\"/register\" method=\"POST\" class=\"login-form\">\n         <h1>Criar Conta</h1>\n         <div class=\"input-group\">\n+          <label for=\"name\">Nome</label>\n+          <input\n+            type=\"text\"\n+            id=\"name\"\n+            name=\"name\"\n+            placeholder=\"Digite seu nome completo\"\n+            required\n+          />\n+        </div>\n+        <div class=\"input-group\">\n           <label for=\"email\">Email</label>\n           <input\n             type=\"email\"\n             id=\"email\"\n@@ -30,11 +40,14 @@\n             required\n           />\n         </div>\n         <button type=\"submit\">Cadastrar</button>\n-        <div class=\"bottom-links\" style=\"justify-content: center; margin-top: 1.5rem;\">\n+        <div\n+          class=\"bottom-links\"\n+          style=\"justify-content: center; margin-top: 1.5rem\"\n+        >\n           <a href=\"/login\">Já tem uma conta? Faça login</a>\n         </div>\n\\ No newline at end of file\n       </form>\n     </div>\n   </body>\n-</html>\n+</html>\n"
+                },
+                {
+                    "date": 1761268131727,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n   <head>\n     <meta charset=\"UTF-8\" />\n     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n     <title>Tela de Cadastro</title>\n-    <link rel=\"stylesheet\" href=\"/css/home.css\" />\n+    <link rel=\"stylesheet\" href=\"/css/global.css\" />\n   </head>\n   <body>\n     <div class=\"login-container\">\n       <form action=\"/register\" method=\"POST\" class=\"login-form\">\n@@ -49,5 +49,5 @@\n         </div>\n       </form>\n     </div>\n   </body>\n-</html>\n\\ No newline at end of file\n+</html>\n"
+                }
+            ],
+            "date": 1761267570316,
+            "name": "Commit-0",
+            "content": "<!DOCTYPE html>\n<html lang=\"pt-br\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Tela de Cadastro</title>\n    <link rel=\"stylesheet\" href=\"/css/home.css\" />\n  </head>\n  <body>\n    <div class=\"login-container\">\n      <form action=\"/register\" method=\"POST\" class=\"login-form\">\n        <h1>Criar Conta</h1>\n        <div class=\"input-group\">\n          <label for=\"email\">Email</label>\n          <input\n            type=\"email\"\n            id=\"email\"\n            name=\"email\"\n            placeholder=\"Digite seu email\"\n            required\n          />\n        </div>\n        <div class=\"input-group\">\n          <label for=\"password\">Senha</label>\n          <input\n            type=\"password\"\n            id=\"password\"\n            name=\"password\"\n            placeholder=\"Crie uma senha\"\n            required\n          />\n        </div>\n        <button type=\"submit\">Cadastrar</button>\n        <div class=\"bottom-links\" style=\"justify-content: center; margin-top: 1.5rem;\">\n          <a href=\"/login\">Já tem uma conta? Faça login</a>\n        </div>\n      </form>\n    </div>\n  </body>\n</html>"
+        }
+    ]
+}

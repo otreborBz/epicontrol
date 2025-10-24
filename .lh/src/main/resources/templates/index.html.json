@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/resources/templates/index.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1761266714856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1761266714856,
+            "name": "Commit-0",
+            "content": "<!DOCTYPE html>\n<html lang=\"pt-br\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Tela de Login</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n    <div class=\"login-container\">\n        <form action=\"#\" method=\"POST\" class=\"login-form\">\n            <h1>Login</h1>\n            <div class=\"input-group\">\n                <label for=\"email\">Email</label>\n                <input type=\"email\" id=\"email\" name=\"email\" placeholder=\"Digite seu email\" required>\n            </div>\n            <div class=\"input-group\">\n                <label for=\"password\">Senha</label>\n                <input type=\"password\" id=\"password\" name=\"password\" placeholder=\"Digite sua senha\" required>\n            </div>\n            <button type=\"submit\">Entrar</button>\n            <div class=\"bottom-links\">\n                <a href=\"#\">Esqueceu a senha?</a>\n                <a href=\"#\">Criar conta</a>\n            </div>\n        </form>\n    </div>\n</body>\n</html>"
+        }
+    ]
+}
