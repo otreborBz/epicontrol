@@ -1,0 +1,18 @@
+{
+    "sourceFile": ".gitignore",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1761269361360,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1761269361360,
+            "name": "Commit-0",
+            "content": "# Arquivos de Build e dependências\n/target/\npom.xml.tag\npom.xml.releaseBackup\npom.xml.versionsBackup\npom.xml.next\nrelease.properties\ndependency-reduced-pom.xml\nbuild-*.log\n\n# Arquivos de IDEs\n.idea/\n*.iml\n*.ipr\n*.iws\nout/\n.classpath\n.project\n.settings/\n\n# Arquivos de Log\n*.log\n\n# Arquivos de ambiente local - NÃO ENVIE PARA O GIT\n.env"
+        }
+    ]
+}

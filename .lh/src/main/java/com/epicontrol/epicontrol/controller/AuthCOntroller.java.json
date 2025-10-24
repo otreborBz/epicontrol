@@ -1,9 +1,9 @@
 {
-    "sourceFile": "src/main/java/com/epicontrol/epicontrol/controller/AuthCOntroller.java",
+    "sourceFile": "src/main/java/com/epicontrol/epicontrol/controller/AuthController.java",
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1761267093049,
@@ -24,6 +24,10 @@
                 {
                     "date": 1761268894689,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,31 @@\n package com.epicontrol.epicontrol.controller;\n \n+import com.epicontrol.epicontrol.service.FirebaseAuth;\n+import org.springframework.beans.factory.annotation.Autowired;\n import org.springframework.stereotype.Controller;\n import org.springframework.web.bind.annotation.PostMapping;\n import org.springframework.web.bind.annotation.RequestParam;\n+import org.springframework.web.servlet.mvc.support.RedirectAttributes;\n \n @Controller\n public class AuthController {\n \n+    @Autowired\n+    private FirebaseAuth firebaseAuthService;\n+\n     @PostMapping(\"/login\")\n     public String handleLogin(@RequestParam String email, @RequestParam String password) {\n+    public String handleLogin(@RequestParam String email, @RequestParam String password, RedirectAttributes redirectAttributes) {\n         System.out.println(\"Tentativa de login com email: \" + email);\n         return \"redirect:/\";\n+\n+        boolean isAuthenticated = firebaseAuthService.authenticate(email, password);\n+\n+        if (isAuthenticated) {\n+            return \"redirect:/\"; // Sucesso: redireciona para a página inicial\n+        } else {\n+            redirectAttributes.addFlashAttribute(\"error\", \"Email ou senha inválidos.\");\n+            return \"redirect:/login\"; // Falha: volta para a página de login com uma mensagem de erro\n+        }\n     }\n }\n"
+                },
+                {
+                    "date": 1761336381997,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n package com.epicontrol.epicontrol.controller;\n \n+import org.slf4j.Logger;\n+import org.slf4j.LoggerFactory;\n import org.springframework.beans.factory.annotation.Autowired;\n import org.springframework.stereotype.Controller;\n import org.springframework.web.bind.annotation.PostMapping;\n import org.springframework.web.bind.annotation.RequestParam;\n@@ -10,20 +12,24 @@\n \n @Controller\n public class AuthController {\n \n+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);\n+\n     @Autowired\n     private FirebaseAuth firebaseAuthService;\n \n     @PostMapping(\"/login\")\n     public String handleLogin(@RequestParam String email, @RequestParam String password, RedirectAttributes redirectAttributes) {\n         System.out.println(\"Tentativa de login com email: \" + email);\n+        logger.info(\"Tentativa de login com email: {}\", email);\n \n         boolean isAuthenticated = firebaseAuthService.authenticate(email, password);\n \n         if (isAuthenticated) {\n             return \"redirect:/\"; // Sucesso: redireciona para a página inicial\n         } else {\n+            logger.warn(\"Falha na autenticação para o email: {}\", email);\n             redirectAttributes.addFlashAttribute(\"error\", \"Email ou senha inválidos.\");\n             return \"redirect:/login\"; // Falha: volta para a página de login com uma mensagem de erro\n         }\n     }\n"
                 }
             ],
             "date": 1761267093049,

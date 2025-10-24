@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1761268406887,
@@ -12,6 +12,30 @@
                 {
                     "date": 1761268520185,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,5 +4,6 @@\n # Desabilita o cache do Thymeleaf para ver as alterações em HTML imediatamente\n spring.thymeleaf.cache=false\n \n # Firebase Configuration\n-firebase.api.key=AIzaSyBBxF_XNUkyMwfLo1OWgrqGpgqGj6cfj8A\n\\ No newline at end of file\n+firebase.api.key=AIzaSyBBxF_XNUkyMwfLo1OWgrqGpgqGj6cfj8A\n+firebase.auth.url=https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1761269361466,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,6 +4,6 @@\n # Desabilita o cache do Thymeleaf para ver as alterações em HTML imediatamente\n spring.thymeleaf.cache=false\n \n # Firebase Configuration\n-firebase.api.key=AIzaSyBBxF_XNUkyMwfLo1OWgrqGpgqGj6cfj8A\n+firebase.api.key=\n firebase.auth.url=https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1761336438954,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,6 +4,6 @@\n # Desabilita o cache do Thymeleaf para ver as alterações em HTML imediatamente\n spring.thymeleaf.cache=false\n \n # Firebase Configuration\n-firebase.api.key=\n+firebase.api.key=AIzaSyBBxF_XNUkyMwfLo1OWgrqGpgqGj6cfj8A\n firebase.auth.url=https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1761336467718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,6 +4,6 @@\n # Desabilita o cache do Thymeleaf para ver as alterações em HTML imediatamente\n spring.thymeleaf.cache=false\n \n # Firebase Configuration\n-firebase.api.key=AIzaSyBBxF_XNUkyMwfLo1OWgrqGpgqGj6cfj8A\n+firebase.api.key=FIREBASE_API_KEY\n firebase.auth.url=https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1761336562173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,6 +4,6 @@\n # Desabilita o cache do Thymeleaf para ver as alterações em HTML imediatamente\n spring.thymeleaf.cache=false\n \n # Firebase Configuration\n-firebase.api.key=FIREBASE_API_KEY\n+firebase.api.key=\"FIREBASE_API_KEY\n firebase.auth.url=https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1761336657175,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,6 +4,6 @@\n # Desabilita o cache do Thymeleaf para ver as alterações em HTML imediatamente\n spring.thymeleaf.cache=false\n \n # Firebase Configuration\n-firebase.api.key=\"FIREBASE_API_KEY\n+firebase.api.key=FIREBASE_API_KEY}\n firebase.auth.url=https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1761336670038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,6 +4,6 @@\n # Desabilita o cache do Thymeleaf para ver as alterações em HTML imediatamente\n spring.thymeleaf.cache=false\n \n # Firebase Configuration\n-firebase.api.key=FIREBASE_API_KEY}\n+firebase.api.key=${FIREBASE_API_KEY}\n firebase.auth.url=https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1761268406887,
