@@ -1,0 +1,56 @@
+:root {
+  --color-primary: #7380ec;
+  --color-white: #fff;
+  --color-dark-variant: #677483;
+  --color-alert: #f8d7da;
+  --color-alert-text: #721c24;
+  --card-border-radius: 1rem;
+  --card-padding: 1.8rem;
+  --box-shadow: 0 1rem 2rem rgba(132, 139, 200, 0.18);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.6rem;
+  margin-top: 1rem;
+}
+
+.card {
+  background: var(--color-white);
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  margin-top: 1rem;
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
+}
+
+.card:hover {
+  box-shadow: none;
+}
+
+.card h3 {
+  margin-bottom: 1rem;
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.card ul li {
+  padding: 0.5rem 0;
+  color: var(--color-dark-variant);
+}
+
+.alert-card {
+  background-color: var(--color-alert);
+  color: var(--color-alert-text);
+}
+
+.charts-section {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}

@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/main/resources/static/js/layout.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1761461242589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761461255135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,16 +13,7 @@\n   toggleButton.addEventListener(\"click\", () => {\n     root.classList.toggle(\"sidebar-collapsed\");\n     localStorage.setItem(\"sidebarCollapsed\", root.classList.contains(\"sidebar-collapsed\"));\n   });\n-  // Adiciona o evento apenas se o botão existir na página\n-  if (toggleButton) {\n-    toggleButton.addEventListener(\"click\", () => {\n-      root.classList.toggle(\"sidebar-collapsed\");\n-      localStorage.setItem(\"sidebarCollapsed\", root.classList.contains(\"sidebar-collapsed\"));\n-    });\n \n   applyInitialSidebarState();\n-    // Aplica o estado inicial apenas se o botão estiver presente\n-    applyInitialSidebarState();\n-  }\n });\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1761461416946,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,15 @@\n document.addEventListener(\"DOMContentLoaded\", function () {\n   const toggleButton = document.getElementById(\"sidebar-toggle\");\n   const root = document.documentElement;\n \n-  // Função para aplicar o estado inicial do menu\n-  const applyInitialSidebarState = () => {\n-    const isCollapsed = localStorage.getItem(\"sidebarCollapsed\") === \"true\";\n-    if (isCollapsed) {\n-      root.classList.add(\"sidebar-collapsed\");\n-    }\n-  };\n-\n   // Adiciona o evento apenas se o botão existir na página\n   if (toggleButton) {\n     toggleButton.addEventListener(\"click\", () => {\n       root.classList.toggle(\"sidebar-collapsed\");\n-      localStorage.setItem(\"sidebarCollapsed\", root.classList.contains(\"sidebar-collapsed\"));\n+      localStorage.setItem(\n+        \"sidebarCollapsed\",\n+        root.classList.contains(\"sidebar-collapsed\")\n+      );\n     });\n-\n-    // Aplica o estado inicial apenas se o botão estiver presente\n-    applyInitialSidebarState();\n   }\n });\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1761461242589,
+            "name": "Commit-0",
+            "content": "document.addEventListener(\"DOMContentLoaded\", function () {\n  const toggleButton = document.getElementById(\"sidebar-toggle\");\n  const root = document.documentElement;\n\n  // Função para aplicar o estado inicial do menu\n  const applyInitialSidebarState = () => {\n    const isCollapsed = localStorage.getItem(\"sidebarCollapsed\") === \"true\";\n    if (isCollapsed) {\n      root.classList.add(\"sidebar-collapsed\");\n    }\n  };\n\n  toggleButton.addEventListener(\"click\", () => {\n    root.classList.toggle(\"sidebar-collapsed\");\n    localStorage.setItem(\"sidebarCollapsed\", root.classList.contains(\"sidebar-collapsed\"));\n  });\n  // Adiciona o evento apenas se o botão existir na página\n  if (toggleButton) {\n    toggleButton.addEventListener(\"click\", () => {\n      root.classList.toggle(\"sidebar-collapsed\");\n      localStorage.setItem(\"sidebarCollapsed\", root.classList.contains(\"sidebar-collapsed\"));\n    });\n\n  applyInitialSidebarState();\n    // Aplica o estado inicial apenas se o botão estiver presente\n    applyInitialSidebarState();\n  }\n});"
+        }
+    ]
+}

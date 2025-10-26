@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatórios - EpiControl</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <script>
+      // Aplica o estado do menu imediatamente para evitar "flicker"
+      (function () {
+        const isCollapsed = localStorage.getItem("sidebarCollapsed") === "true";
+        if (isCollapsed) {
+          document.documentElement.classList.add("sidebar-collapsed");
+        }
+      })();
+    </script>
+    <link rel="stylesheet" th:href="@{/css/layout-sidebar.css}" />
+    <link rel="stylesheet" th:href="@{/css/relatorios.css}" />
+  </head>
+  <body>
+    <div class="app-container">
+      <div
+        th:replace="~{fragments/layout :: sidebar(activePage='relatorios')}"
+      ></div>
+      <main class="main-content">
+        <div class="page-header">
+          <h1>Relatório por Colaborador</h1>
+        </div>
+
+        <!-- Formulário de Pesquisa -->
+        <div class="search-container">
+          <form th:action="@{/relatorios}" method="get" class="search-form">
+            <input
+              type="text"
+              name="query"
+              placeholder="Pesquisar por nome ou RE do colaborador..."
+              class="search-input"
+              th:value="${query}"
+            />
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-search"></i> Pesquisar
+            </button>
+          </form>
+        </div>
+
+        <!-- Resultados da Pesquisa (Exemplo) -->
+        <div class="results-container" th:if="${colaboradorEncontrado}">
+          <h2 th:text="'Entregas para: ' + ${colaboradorEncontrado}"></h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>EPI</th>
+                  <th>Quantidade</th>
+                  <th>Data da Entrega</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Dados de exemplo -->
+                <tr>
+                  <td>Capacete de Segurança</td>
+                  <td>1</td>
+                  <td>15/09/2025</td>
+                </tr>
+                <tr>
+                  <td>Luva de Proteção</td>
+                  <td>2</td>
+                  <td>15/09/2025</td>
+                </tr>
+                <tr>
+                  <td>Bota de Segurança</td>
+                  <td>1</td>
+                  <td>10/08/2025</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Mensagem de "nenhum resultado" -->
+        <div class="results-container" th:if="${notFound}">
+          <p>Nenhum colaborador encontrado com o termo pesquisado.</p>
+        </div>
+      </main>
+    </div>
+    <script th:src="@{/js/layout.js}"></script>
+  </body>
+</html>

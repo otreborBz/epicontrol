@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/java/com/epicontrol/epicontrol/controller/layout.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1761458296378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1761458296378,
+            "name": "Commit-0",
+            "content": "<!DOCTYPE html>\n<html lang=\"pt-br\" xmlns:th=\"http://www.thymeleaf.org\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <!-- O título da página será definido dinamicamente -->\n    <title th:text=\"${pageTitle} ?: 'EpiControl'\">EpiControl</title>\n    <link rel=\"stylesheet\" href=\"/css/global.css\" />\n    <link rel=\"stylesheet\" href=\"/css/dashboard.css\" />\n    <!-- Ícones do Google Fonts -->\n    <link\n      href=\"https://fonts.googleapis.com/icon?family=Material+Icons+Sharp\"\n      rel=\"stylesheet\"\n    />\n  </head>\n  <body>\n    <div class=\"dashboard-container\">\n      <!-- Menu Lateral -->\n      <aside>\n        <div class=\"top\">\n          <div class=\"logo\">\n            <h2>Epi<span class=\"primary\">Control</span></h2>\n          </div>\n        </div>\n\n        <div class=\"sidebar\">\n          <a th:href=\"@{/dashboard}\" th:classappend=\"${#httpServletRequest.getRequestURI() == '/dashboard' ? 'active' : ''}\">\n            <span class=\"material-icons-sharp\">dashboard</span>\n            <h3>Dashboard</h3>\n          </a>\n          <a th:href=\"@{/colaboradores}\" th:classappend=\"${#httpServletRequest.getRequestURI() == '/colaboradores' ? 'active' : ''}\">\n            <span class=\"material-icons-sharp\">groups</span>\n            <h3>Colaboradores</h3>\n          </a>\n          <a th:href=\"@{/epis}\" th:classappend=\"${#httpServletRequest.getRequestURI() == '/epis' ? 'active' : ''}\">\n            <span class=\"material-icons-sharp\">shield</span>\n            <h3>EPIs</h3>\n          </a>\n          <a th:href=\"@{/entregas}\" th:classappend=\"${#httpServletRequest.getRequestURI() == '/entregas' ? 'active' : ''}\">\n            <span class=\"material-icons-sharp\">local_shipping</span>\n            <h3>Entrega de EPIs</h3>\n          </a>\n          <a href=\"/logout\">\n            <span class=\"material-icons-sharp\">logout</span>\n            <h3>Sair</h3>\n          </a>\n        </div>\n      </aside>\n\n      <!-- Conteúdo Principal - Será substituído pelo conteúdo de cada página -->\n      <main layout:fragment=\"content\"></main>\n    </div>\n  </body>\n</html>"
+        }
+    ]
+}

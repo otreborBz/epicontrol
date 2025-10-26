@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Ícones do Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <script>
+      // Aplica o estado do menu imediatamente para evitar "flicker"
+      (function () {
+        const isCollapsed = localStorage.getItem("sidebarCollapsed") === "true";
+        if (isCollapsed) {
+          document.documentElement.classList.add("sidebar-collapsed");
+        }
+      })();
+    </script>
+    <title>Entregas - EpiControl</title>
+    <!-- CSS do Layout Principal -->
+    <link rel="stylesheet" th:href="@{/css/layout-sidebar.css}" />
+    <!-- CSS Específico da Página -->
+    <link rel="stylesheet" th:href="@{/css/entregas.css}" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Importa a sidebar, passando 'entregas' como a página ativa -->
+      <div
+        th:replace="~{fragments/layout :: sidebar(activePage='entregas')}"
+      ></div>
+
+      <main class="main-content">
+        <div class="page-header">
+          <h1>Registro de Entregas</h1>
+          <button id="open-modal-btn" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Nova Entrega
+          </button>
+        </div>
+
+        <!-- Tabela de Entregas -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Colaborador</th>
+                <th>EPI</th>
+                <th>Quantidade</th>
+                <th>Data da Entrega</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Exemplo de linha - será populado dinamicamente -->
+              <tr>
+                <td>Roberto Carvalho</td>
+                <td>Luva de Proteção</td>
+                <td>2</td>
+                <td>26/10/2025</td>
+                <td class="actions">
+                  <a href="#" title="Gerar Recibo"
+                    ><i class="fas fa-file-alt"></i
+                  ></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+
+    <!-- Modal para Nova Entrega -->
+    <div id="entrega-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Registrar Nova Entrega</h2>
+          <button id="close-modal-btn" class="close-button">&times;</button>
+        </div>
+        <form action="/entregas/nova" method="post" class="modal-form">
+          <div class="form-group">
+            <label for="colaboradorId">Colaborador</label
+            ><select id="colaboradorId" name="colaboradorId" required>
+              <option value="">Selecione o Colaborador</option>
+              <!-- Options serão populadas dinamicamente -->
+              <option value="1">Roberto Carvalho</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="epiId">EPI</label
+            ><select id="epiId" name="epiId" required>
+              <option value="">Selecione o EPI</option>
+              <!-- Options serão populadas dinamicamente -->
+              <option value="1">Luva de Proteção</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="quantidadeEntregue">Quantidade Entregue</label
+            ><input
+              type="number"
+              id="quantidadeEntregue"
+              name="quantidadeEntregue"
+              required
+              min="1"
+            />
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+              Registrar Entrega
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script th:src="@{/js/layout.js}"></script>
+    <script th:src="@{/js/entregas.js}"></script>
+  </body>
+</html>

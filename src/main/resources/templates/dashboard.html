@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Ícones do Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <script>
+      // Aplica o estado do menu imediatamente para evitar "flicker"
+      (function () {
+        const isCollapsed = localStorage.getItem("sidebarCollapsed") === "true";
+        if (isCollapsed) {
+          document.documentElement.classList.add("sidebar-collapsed");
+        }
+      })();
+    </script>
+    <title>Dashboard - EpiControl</title>
+    <!-- CSS do Layout Principal -->
+    <link rel="stylesheet" th:href="@{/css/layout-sidebar.css}" />
+    <!-- CSS Específico do Dashboard -->
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Importa a sidebar, passando 'dashboard' como a página ativa -->
+      <div
+        th:replace="~{fragments/layout :: sidebar(activePage='dashboard')}"
+      ></div>
+
+      <!-- Conteúdo Principal -->
+      <main class="main-content">
+        <h1>Dashboard</h1>
+
+        <div class="dashboard-grid">
+          <div class="card">
+            <h3>Resumo do Estoque</h3>
+            <ul id="resumo-estoque-list">
+              <li>
+                Estoque Baixo:
+                <strong id="tipos-estoque-baixo">...</strong>
+              </li>
+              <li>
+                <a th:href="@{/epis(filtro=vencendo)}" class="dashboard-link"
+                  >Vencendo (30 dias):</a
+                >
+                <strong id="epis-vencendo">...</strong>
+              </li>
+              <li>
+                <a th:href="@{/epis(filtro=em-falta)}" class="dashboard-link"
+                  >Em falta:</a
+                >
+                <strong id="epis-em-falta">...</strong>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card alert-card">
+            <h3>Alertas</h3>
+            <ul id="alertas-list">
+              <li>
+                Colaboradores sem EPI:
+                <strong id="colaboradores-sem-epi">...</strong>
+              </li>
+              <li>
+                Entregas vencidas: <strong id="entregas-vencidas">...</strong>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Seção de Gráficos -->
+        <div class="charts-section">
+          <div class="card card-chart">
+            <h3>EPIs Mais Utilizados</h3>
+            <canvas id="episMaisUtilizadosChart"></canvas>
+          </div>
+          <div class="card card-chart">
+            <h3>Uso de EPIs por Setor</h3>
+            <canvas id="usoPorSetorChart"></canvas>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script th:src="@{/js/layout.js}"></script>
+    <!-- <script th:src="@{/js/dashboard.js}"></script> -->
+  </body>
+</html>

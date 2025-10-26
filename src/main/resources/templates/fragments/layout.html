@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <!-- /* 
+        Sidebar Fragment 
+        Recebe um parâmetro 'activePage' para saber qual link de navegação deve ficar ativo.
+    */ -->
+    <aside class="sidebar" th:fragment="sidebar(activePage)">
+      <nav class="main-nav">
+        <ul>
+          <li>
+            <a
+              th:href="@{/dashboard}"
+              th:class="${activePage == 'dashboard'} ? 'active'"
+            >
+              <i class="fas fa-chart-pie"></i>
+              <span class="nav-text">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a
+              th:href="@{/colaboradores}"
+              th:class="${activePage == 'colaboradores'} ? 'active'"
+            >
+              <i class="fas fa-users"></i>
+              <span class="nav-text">Colaboradores</span>
+            </a>
+          </li>
+          <li>
+            <a th:href="@{/epis}" th:class="${activePage == 'epis'} ? 'active'">
+              <i class="fas fa-hard-hat"></i>
+              <span class="nav-text">EPIs</span>
+            </a>
+          </li>
+          <li>
+            <a
+              th:href="@{/entregas}"
+              th:class="${activePage == 'entregas'} ? 'active'"
+            >
+              <i class="fas fa-dolly-flatbed"></i>
+              <span class="nav-text">Entrega/Devolução</span>
+            </a>
+          </li>
+          <li>
+            <a
+              th:href="@{/relatorios}"
+              th:class="${activePage == 'relatorios'} ? 'active'"
+            >
+              <i class="fas fa-chart-bar"></i>
+              <span class="nav-text">Relatórios</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <a th:href="@{/logout}" class="logout-button">
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="nav-text">Sair</span>
+        </a>
+        <button
+          id="sidebar-toggle"
+          class="sidebar-toggle-button"
+          title="Recolher menu"
+        >
+          <i class="fas fa-chevron-left"></i>
+        </button>
+      </div>
+    </aside>
+  </body>
+</html>

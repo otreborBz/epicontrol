@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/java/com/epicontrol/epicontrol/controller/dashboard.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1761458304375,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1761458304375,
+            "name": "Commit-0",
+            "content": "/* Estilos para o layout do Dashboard */\n:root {\n  --color-primary: #7380ec;\n  --color-danger: #ff7782;\n  --color-success: #41f1b6;\n  --color-white: #fff;\n  --color-info-dark: #7d8da1;\n  --color-info-light: #dce1eb;\n  --color-dark: #363949;\n  --color-light: rgba(132, 139, 200, 0.18);\n  --color-primary-variant: #111e88;\n  --color-dark-variant: #677483;\n  --color-background: #f6f6f9;\n\n  --card-border-radius: 2rem;\n  --border-radius-1: 0.4rem;\n  --border-radius-2: 0.8rem;\n  --border-radius-3: 1.2rem;\n\n  --card-padding: 1.8rem;\n  --padding-1: 1.2rem;\n\n  --box-shadow: 0 2rem 3rem var(--color-light);\n}\n\n.dashboard-container {\n  display: grid;\n  width: 96%;\n  margin: 0 auto;\n  gap: 1.8rem;\n  grid-template-columns: 14rem auto;\n}\n\na {\n  color: var(--color-dark);\n}\n\nh1 {\n  font-weight: 800;\n  font-size: 2.8rem;\n}\n\nh2 {\n  font-size: 1.4rem;\n}\n\nh3 {\n  font-size: 0.87rem;\n}\n\n/* --- ASIDE / MENU LATERAL --- */\naside {\n  height: 100vh;\n}\n\naside .top {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 1.4rem;\n}\n\naside .logo {\n  display: flex;\n  gap: 0.8rem;\n}\n\naside .logo h2 .primary {\n  color: var(--color-primary);\n}\n\naside .sidebar {\n  display: flex;\n  flex-direction: column;\n  height: 86vh;\n  position: relative;\n  top: 3rem;\n}\n\naside h3 {\n  font-weight: 500;\n}\n\naside .sidebar a {\n  display: flex;\n  color: var(--color-info-dark);\n  margin-left: 2rem;\n  gap: 1rem;\n  align-items: center;\n  position: relative;\n  height: 3.7rem;\n  transition: all 300ms ease;\n}\n\naside .sidebar a span {\n  font-size: 1.6rem;\n  transition: all 300ms ease;\n}\n\naside .sidebar a.active {\n  background: var(--color-light);\n  color: var(--color-primary);\n  margin-left: 0;\n}\n\naside .sidebar a.active::before {\n  content: \"\";\n  width: 6px;\n  height: 100%;\n  background: var(--color-primary);\n}\n\naside .sidebar a:hover {\n  color: var(--color-primary);\n}\n\naside .sidebar a:hover span {\n  margin-left: 1rem;\n}"
+        }
+    ]
+}

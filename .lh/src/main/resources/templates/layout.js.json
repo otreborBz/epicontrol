@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/resources/templates/layout.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1761459063073,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1761459063073,
+            "name": "Commit-0",
+            "content": "document.addEventListener(\"DOMContentLoaded\", function () {\n  const toggleButton = document.getElementById(\"sidebar-toggle\");\n  const root = document.documentElement;\n\n  toggleButton.addEventListener(\"click\", () => {\n    const isCollapsed = root.classList.contains(\"sidebar-collapsed\");\n\n    if (isCollapsed) {\n      root.classList.remove(\"sidebar-collapsed\");\n      localStorage.setItem(\"sidebarCollapsed\", \"false\");\n    } else {\n      root.classList.add(\"sidebar-collapsed\");\n      localStorage.setItem(\"sidebarCollapsed\", \"true\");\n    }\n  });\n});"
+        }
+    ]
+}

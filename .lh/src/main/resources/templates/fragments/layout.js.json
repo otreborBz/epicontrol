@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/main/resources/templates/fragments/layout.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1761459779711,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761459788692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,19 @@\n+document.addEventListener(\"DOMContentLoaded\", function () {\n+  const toggleButton = document.getElementById(\"sidebar-toggle\");\n+  const root = document.documentElement;\n+\n+  // Função para aplicar o estado inicial do menu\n+  const applyInitialSidebarState = () => {\n+    const isCollapsed = localStorage.getItem(\"sidebarCollapsed\") === \"true\";\n+    if (isCollapsed) {\n+      root.classList.add(\"sidebar-collapsed\");\n+    }\n+  };\n+\n+  toggleButton.addEventListener(\"click\", () => {\n+    root.classList.toggle(\"sidebar-collapsed\");\n+    localStorage.setItem(\"sidebarCollapsed\", root.classList.contains(\"sidebar-collapsed\"));\n+  });\n+\n+  applyInitialSidebarState();\n+});\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1761459779711,
+            "name": "Commit-0",
+            "content": "document.addEventListener(\"DOMContentLoaded\", function () {\n  const toggleButton = document.getElementById(\"sidebar-toggle\");\n  const root = document.documentElement;\n\n  // Função para aplicar o estado inicial do menu\n  const applyInitialSidebarState = () => {\n    const isCollapsed = localStorage.getItem(\"sidebarCollapsed\") === \"true\";\n    if (isCollapsed) {\n      root.classList.add(\"sidebar-collapsed\");\n    }\n  };\n\n  toggleButton.addEventListener(\"click\", () => {\n    root.classList.toggle(\"sidebar-collapsed\");\n    localStorage.setItem(\"sidebarCollapsed\", root.classList.contains(\"sidebar-collapsed\"));\n  });\n\n  applyInitialSidebarState();\n});\n"
+        }
+    ]
+}

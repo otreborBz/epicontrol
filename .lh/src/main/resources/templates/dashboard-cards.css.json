@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/main/resources/templates/dashboard-cards.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1761459049785,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761459066604,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,56 @@\n+:root {\n+  --color-primary: #7380ec;\n+  --color-white: #fff;\n+  --color-dark-variant: #677483;\n+  --color-alert: #f8d7da;\n+  --color-alert-text: #721c24;\n+  --card-border-radius: 1rem;\n+  --card-padding: 1.8rem;\n+  --box-shadow: 0 1rem 2rem rgba(132, 139, 200, 0.18);\n+}\n+\n+.dashboard-grid {\n+  display: grid;\n+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n+  gap: 1.6rem;\n+  margin-top: 1rem;\n+}\n+\n+.card {\n+  background: var(--color-white);\n+  padding: var(--card-padding);\n+  border-radius: var(--card-border-radius);\n+  margin-top: 1rem;\n+  box-shadow: var(--box-shadow);\n+  transition: all 300ms ease;\n+}\n+\n+.card:hover {\n+  box-shadow: none;\n+}\n+\n+.card h3 {\n+  margin-bottom: 1rem;\n+}\n+\n+.card ul {\n+  list-style: none;\n+  padding: 0;\n+}\n+\n+.card ul li {\n+  padding: 0.5rem 0;\n+  color: var(--color-dark-variant);\n+}\n+\n+.alert-card {\n+  background-color: var(--color-alert);\n+  color: var(--color-alert-text);\n+}\n+\n+.charts-section {\n+  margin-top: 2rem;\n+  display: grid;\n+  grid-template-columns: 1fr 1fr;\n+  gap: 2rem;\n+}\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1761459049785,
+            "name": "Commit-0",
+            "content": ":root {\n  --color-primary: #7380ec;\n  --color-white: #fff;\n  --color-dark-variant: #677483;\n  --color-alert: #f8d7da;\n  --color-alert-text: #721c24;\n  --card-border-radius: 1rem;\n  --card-padding: 1.8rem;\n  --box-shadow: 0 1rem 2rem rgba(132, 139, 200, 0.18);\n}\n\n.dashboard-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n  gap: 1.6rem;\n  margin-top: 1rem;\n}\n\n.card {\n  background: var(--color-white);\n  padding: var(--card-padding);\n  border-radius: var(--card-border-radius);\n  margin-top: 1rem;\n  box-shadow: var(--box-shadow);\n  transition: all 300ms ease;\n}\n\n.card:hover {\n  box-shadow: none;\n}\n\n.card h3 {\n  margin-bottom: 1rem;\n}\n\n.card ul {\n  list-style: none;\n  padding: 0;\n}\n\n.card ul li {\n  padding: 0.5rem 0;\n  color: var(--color-dark-variant);\n}\n\n.alert-card {\n  background-color: var(--color-alert);\n  color: var(--color-alert-text);\n}\n\n.charts-section {\n  margin-top: 2rem;\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 2rem;\n}\n"
+        }
+    ]
+}

@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -20,6 +21,11 @@ public class AuthController {
     @Autowired
     private FirebaseAuth firebaseAuthService;
 
+    @GetMapping("/login")
+    public String showLoginPage() {
+        return "Login"; // Retorna a página Login.html
+    }
+
     @PostMapping("/login")
     public String handleLogin(@RequestParam String email, @RequestParam String password,
                               RedirectAttributes redirectAttributes, HttpSession session) {
@@ -34,12 +40,19 @@ public class AuthController {
             session.setAttribute("ID_TOKEN", idToken);
 
             logger.info("Autenticação bem-sucedida. Token armazenado na sessão.");
-            return "redirect:/"; // sucesso
+            return "redirect:/dashboard"; // sucesso
 
         } catch (Exception e) {
             logger.warn("Falha na autenticação para o email: {} - {}", email, e.getMessage());
             redirectAttributes.addFlashAttribute("error", "Email ou senha inválidos.");
             return "redirect:/login"; // falha
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        logger.info("Usuário deslogado, sessão invalidada.");
+        return "redirect:/login";
     }
 }

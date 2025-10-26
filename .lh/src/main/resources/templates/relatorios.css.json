@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/resources/templates/relatorios.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1761460935638,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1761460935638,
+            "name": "Commit-0",
+            "content": "/* Estilos para o cabeçalho da página */\n.page-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 2rem;\n}\n\n.btn {\n  padding: 0.8rem 1.5rem;\n  border: none;\n  border-radius: 0.5rem;\n  cursor: pointer;\n  font-size: 1rem;\n  font-weight: 500;\n  transition: background-color 0.3s ease;\n  display: inline-flex;\n  align-items: center;\n  gap: 0.5rem;\n}\n\n.btn-primary {\n  background-color: var(--color-primary);\n  color: white;\n}\n\n.btn-primary:hover {\n  background-color: #5a67d8;\n}\n\n/* Container de Pesquisa */\n.search-container {\n  background-color: #fff;\n  padding: 2rem;\n  border-radius: 1rem;\n  box-shadow: var(--box-shadow);\n  margin-bottom: 2rem;\n}\n\n.search-form {\n  display: flex;\n  gap: 1rem;\n}\n\n.search-input {\n  flex-grow: 1;\n  padding: 0.8rem;\n  border: 1px solid #ccc;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n}\n\n/* Container de Resultados */\n.results-container {\n  margin-top: 2rem;\n}\n\n.results-container h2 {\n  margin-bottom: 1rem;\n  color: var(--color-dark);\n}\n\n/* Estilos da Tabela (reutilizados) */\n.table-container {\n  background-color: #fff;\n  padding: 2rem;\n  border-radius: 1rem;\n  box-shadow: var(--box-shadow);\n  overflow-x: auto;\n}\n\ntable {\n  width: 100%;\n  border-collapse: collapse;\n  text-align: left;\n}\n\ntable th, table td {\n  padding: 1rem;\n  border-bottom: 1px solid #eee;\n}\n\ntable th {\n  color: var(--nav-link-color);\n  font-weight: 600;\n  text-transform: uppercase;\n  font-size: 0.85rem;\n}\n\ntable td {\n  color: var(--color-dark);\n}\n\ntable tbody tr:last-child td {\n  border-bottom: none;\n}"
+        }
+    ]
+}

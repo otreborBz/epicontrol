@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/resources/templates/entregas.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1761460753750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1761460753750,
+            "name": "Commit-0",
+            "content": "document.addEventListener(\"DOMContentLoaded\", function () {\n  const modal = document.getElementById(\"entrega-modal\");\n  const openModalBtn = document.getElementById(\"open-modal-btn\");\n  const closeModalBtn = document.getElementById(\"close-modal-btn\");\n\n  if (modal && openModalBtn && closeModalBtn) {\n    // Função para abrir o modal\n    openModalBtn.onclick = function () {\n      modal.style.display = \"flex\";\n    };\n\n    // Função para fechar o modal\n    closeModalBtn.onclick = function () {\n      modal.style.display = \"none\";\n    };\n\n    // Fechar o modal se o usuário clicar fora do conteúdo\n    window.onclick = function (event) {\n      if (event.target == modal) {\n        modal.style.display = \"none\";\n      }\n    };\n  }\n});"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/main/resources/templates/colaboradores.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1761458809884,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761459056406,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,5 +14,12 @@\n   <body>\n     <div class=\"app-container\">\n       <div\n         th:replace=\"~{fragments/layout :: sidebar(activePage='colaboradores')}\"\n-      \n\\ No newline at end of file\n+      ></div>\n+      <main class=\"main-content\">\n+        <h1>Gestão de Colaboradores</h1>\n+      </main>\n+    </div>\n+    <script th:src=\"@{/js/layout.js}\"></script>\n+  </body>\n+</html>\n"
+                },
+                {
+                    "date": 1761459163769,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,9 @@\n     <link\n       rel=\"stylesheet\"\n       href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css\"\n     />\n-    <link rel=\"stylesheet\" th:href=\"@{/css/global.css}\" />\n-    <link rel=\"stylesheet\" th:href=\"@{/css/layout-sidebar.css}\" />\n+    <link rel=\"stylesheet\" th:href=\"@{/css/main.css}\" />\n   </head>\n   <body>\n     <div class=\"app-container\">\n       <div\n"
+                }
+            ],
+            "date": 1761458809884,
+            "name": "Commit-0",
+            "content": "<!DOCTYPE html>\n<html\n  lang=\"pt-br\"\n  xmlns:th=\"http://www.thymeleaf.org\"\n>\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Colaboradores - EpiControl</title>\n    <link rel=\"stylesheet\" th:href=\"@{/css/global.css}\" />\n    <link rel=\"stylesheet\" th:href=\"@{/css/dashboard.css}\" />\n  </head>\n  <body>\n    <div class=\"dashboard-container\">\n      <div\n        th:replace=\"~{fragments/layout :: sidebar(activePage='colaboradores')}\"\n      ></div>\n      <main class=\"main-content\">\n        <h1>Gestão de Colaboradores</h1>\n      </main>\n    </div>\n  </body>\n</html>\n"
+        }
+    ]
+}

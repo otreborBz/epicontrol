@@ -1,0 +1,50 @@
+{
+    "sourceFile": "src/main/java/com/epicontrol/epicontrol/controller/DashboardController.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1761458294608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761459051738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,5 +29,10 @@\n     @GetMapping(\"/entregas\")\n     public String entregas() {\n         return \"entregas\";\n     }\n+\n+    @GetMapping(\"/relatorios\")\n+    public String relatorios() {\n+        return \"relatorios\";\n+    }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1761459402864,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,1 @@\n+package com.epicontrol.epicontrol.controller;\n"
+                },
+                {
+                    "date": 1761459528473,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,33 @@\n package com.epicontrol.epicontrol.controller;\n+\n+import org.springframework.stereotype.Controller;\n+import org.springframework.web.bind.annotation.GetMapping;\n+\n+@Controller\n+public class DashboardController {\n+\n+    @GetMapping(\"/\")\n+    public String redirectToDashboard() {\n+        return \"redirect:/dashboard\";\n+    }\n+\n+    @GetMapping(\"/dashboard\")\n+    public String dashboard() {\n+        return \"dashboard\";\n+    }\n+\n+    @GetMapping(\"/colaboradores\")\n+    public String colaboradores() {\n+        return \"colaboradores\";\n+    }\n+\n+    @GetMapping(\"/epis\")\n+    public String epis() {\n+        return \"epis\";\n+    }\n+\n+    @GetMapping(\"/entregas\")\n+    public String entregas() {\n+        return \"entregas\";\n+    }\n+}\n"
+                },
+                {
+                    "date": 1761460123108,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n package com.epicontrol.epicontrol.controller;\n \n import org.springframework.stereotype.Controller;\n import org.springframework.web.bind.annotation.GetMapping;\n+import org.springframework.web.bind.annotation.PostMapping;\n \n @Controller\n public class DashboardController {\n \n@@ -29,5 +30,12 @@\n     @GetMapping(\"/entregas\")\n     public String entregas() {\n         return \"entregas\";\n     }\n+\n+    @PostMapping(\"/colaboradores/novo\")\n+    public String novoColaborador() {\n+        // Lógica para salvar o novo colaborador no banco de dados virá aqui.\n+        System.out.println(\"Recebida requisição para criar novo colaborador!\");\n+        return \"redirect:/colaboradores\";\n+    }\n }\n"
+                },
+                {
+                    "date": 1761460275352,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,11 +31,24 @@\n     public String entregas() {\n         return \"entregas\";\n     }\n \n+    @GetMapping(\"/relatorios\")\n+    public String relatorios() {\n+        return \"relatorios\";\n+    }\n+\n     @PostMapping(\"/colaboradores/novo\")\n     public String novoColaborador() {\n+    public String novoColaborador(\n+        @RequestParam String nome,\n+        @RequestParam String re,\n+        @RequestParam String data_admissao,\n+        @RequestParam String setor,\n+        @RequestParam String funcao\n+    ) {\n         // Lógica para salvar o novo colaborador no banco de dados virá aqui.\n         System.out.println(\"Recebida requisição para criar novo colaborador!\");\n+        System.out.println(\"Recebido novo colaborador: \" + nome);\n         return \"redirect:/colaboradores\";\n     }\n }\n"
+                },
+                {
+                    "date": 1761460293809,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,24 +31,11 @@\n     public String entregas() {\n         return \"entregas\";\n     }\n \n-    @GetMapping(\"/relatorios\")\n-    public String relatorios() {\n-        return \"relatorios\";\n-    }\n-\n     @PostMapping(\"/colaboradores/novo\")\n     public String novoColaborador() {\n-    public String novoColaborador(\n-        @RequestParam String nome,\n-        @RequestParam String re,\n-        @RequestParam String data_admissao,\n-        @RequestParam String setor,\n-        @RequestParam String funcao\n-    ) {\n         // Lógica para salvar o novo colaborador no banco de dados virá aqui.\n         System.out.println(\"Recebida requisição para criar novo colaborador!\");\n-        System.out.println(\"Recebido novo colaborador: \" + nome);\n         return \"redirect:/colaboradores\";\n     }\n }\n"
+                },
+                {
+                    "date": 1761460584463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,5 +49,17 @@\n         // Lógica para salvar o novo colaborador no banco de dados virá aqui.\n         System.out.println(\"Recebido novo colaborador: \" + nome);\n         return \"redirect:/colaboradores\";\n     }\n+\n+    @PostMapping(\"/epis/novo\")\n+    public String novoEpi(\n+        @RequestParam String nome,\n+        @RequestParam String ca,\n+        @RequestParam String validade,\n+        @RequestParam int quantidade\n+    ) {\n+        // Lógica para salvar o novo EPI no banco de dados virá aqui.\n+        System.out.println(\"Recebido novo EPI: \" + nome);\n+        return \"redirect:/epis\";\n+    }\n }\n"
+                },
+                {
+                    "date": 1761460590547,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,5 +49,17 @@\n         // Lógica para salvar o novo colaborador no banco de dados virá aqui.\n         System.out.println(\"Recebido novo colaborador: \" + nome);\n         return \"redirect:/colaboradores\";\n     }\n+\n+    @PostMapping(\"/epis/novo\")\n+    public String novoEpi(\n+        @RequestParam String nome,\n+        @RequestParam String ca,\n+        @RequestParam String validade,\n+        @RequestParam int quantidade\n+    ) {\n+        // Lógica para salvar o novo EPI no banco de dados virá aqui.\n+        System.out.println(\"Recebido novo EPI: \" + nome);\n+        return \"redirect:/epis\";\n+    }\n }\n"
+                }
+            ],
+            "date": 1761458294608,
+            "name": "Commit-0",
+            "content": "package com.epicontrol.epicontrol.controller;\n\nimport org.springframework.stereotype.Controller;\nimport org.springframework.web.bind.annotation.GetMapping;\n\n@Controller\npublic class DashboardController {\n\n    @GetMapping(\"/\")\n    public String redirectToDashboard() {\n        return \"redirect:/dashboard\";\n    }\n\n    @GetMapping(\"/dashboard\")\n    public String dashboard() {\n        return \"dashboard\";\n    }\n\n    @GetMapping(\"/colaboradores\")\n    public String colaboradores() {\n        return \"colaboradores\";\n    }\n\n    @GetMapping(\"/epis\")\n    public String epis() {\n        return \"epis\";\n    }\n\n    @GetMapping(\"/entregas\")\n    public String entregas() {\n        return \"entregas\";\n    }\n}"
+        }
+    ]
+}

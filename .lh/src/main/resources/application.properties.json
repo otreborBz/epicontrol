@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1761268406887,
@@ -40,6 +40,10 @@
                 {
                     "date": 1761455960467,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n-spring.application.name=epicontrol\n-\n-\n-# Desabilita o cache do Thymeleaf para ver as alterações em HTML imediatamente\n-spring.thymeleaf.cache=false\n-\n-# Firebase Configuration\n-firebase.api.key=${FIREBASE_API_KEY}\n+spring.application.name=epicontrol\r\n+\r\n+\r\n+# Desabilita o cache do Thymeleaf para ver as alterações em HTML imediatamente\r\n+spring.thymeleaf.cache=false\r\n+\r\n+# Firebase Configuration\r\n firebase.auth.url=https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1761459212843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n spring.application.name=epicontrol\r\n \r\n-\r\n # Desabilita o cache do Thymeleaf para ver as alterações em HTML imediatamente\r\n spring.thymeleaf.cache=false\r\n \r\n-# Firebase Configuration\r\n-firebase.auth.url=https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword\n\\ No newline at end of file\n+# URL do seu endpoint de autenticação no backend Node.js\r\n+api.auth.url=http://localhost:8081/api/auth/login\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1761268406887,

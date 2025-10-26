@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Ícones do Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <script>
+      // Aplica o estado do menu imediatamente para evitar "flicker"
+      (function () {
+        const isCollapsed = localStorage.getItem("sidebarCollapsed") === "true";
+        if (isCollapsed) {
+          document.documentElement.classList.add("sidebar-collapsed");
+        }
+      })();
+    </script>
+    <title>EPIs - EpiControl</title>
+    <!-- CSS do Layout Principal -->
+    <link rel="stylesheet" th:href="@{/css/layout-sidebar.css}" />
+    <!-- CSS Específico da Página -->
+    <link rel="stylesheet" th:href="@{/css/epis.css}" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Importa a sidebar, passando 'epis' como a página ativa -->
+      <div th:replace="~{fragments/layout :: sidebar(activePage='epis')}"></div>
+
+      <main class="main-content">
+        <div class="page-header">
+          <h1>Gestão de EPIs</h1>
+          <button id="open-modal-btn" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Novo EPI
+          </button>
+        </div>
+
+        <!-- Tabela de EPIs -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>CA</th>
+                <th>Validade</th>
+                <th>Quantidade</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Exemplo de linha - será populado dinamicamente -->
+              <tr>
+                <td>Luva de Proteção</td>
+                <td>98765</td>
+                <td>01/12/2026</td>
+                <td>50</td>
+                <td class="actions">
+                  <a href="#" title="Editar"><i class="fas fa-edit"></i></a>
+                  <a href="#" title="Excluir"><i class="fas fa-trash"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+
+    <!-- Modal para Novo EPI -->
+    <div id="epi-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Novo EPI</h2>
+          <button id="close-modal-btn" class="close-button">&times;</button>
+        </div>
+        <form action="/epis/novo" method="post" class="modal-form">
+          <div class="form-group">
+            <label for="nome">Nome do EPI</label
+            ><input type="text" id="nome" name="nome" required />
+          </div>
+          <div class="form-group">
+            <label for="ca">CA (Certificado de Aprovação)</label
+            ><input type="text" id="ca" name="ca" required />
+          </div>
+          <div class="form-group">
+            <label for="validade">Validade</label
+            ><input type="date" id="validade" name="validade" required />
+          </div>
+          <div class="form-group">
+            <label for="quantidade">Quantidade em Estoque</label
+            ><input type="number" id="quantidade" name="quantidade" required />
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script th:src="@{/js/layout.js}"></script>
+    <script th:src="@{/js/epis.js}"></script>
+  </body>
+</html>
