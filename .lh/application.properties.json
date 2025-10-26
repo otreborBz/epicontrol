@@ -1,0 +1,18 @@
+{
+    "sourceFile": "application.properties",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1761457472109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1761457472109,
+            "name": "Commit-0",
+            "content": "spring.application.name=epicontrol\n\n# Desabilita o cache do Thymeleaf para ver as alterações em HTML imediatamente\nspring.thymeleaf.cache=false\n\n# URL do seu endpoint de autenticação no backend Node.js\napi.auth.url=http://localhost:8081/api/auth/login\n"
+        }
+    ]
+}

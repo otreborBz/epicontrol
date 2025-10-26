@@ -10,6 +10,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.epicontrol.epicontrol.service.FirebaseAuth;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class AuthController {
 
@@ -19,17 +21,25 @@ public class AuthController {
     private FirebaseAuth firebaseAuthService;
 
     @PostMapping("/login")
-    public String handleLogin(@RequestParam String email, @RequestParam String password, RedirectAttributes redirectAttributes) {
+    public String handleLogin(@RequestParam String email, @RequestParam String password,
+                              RedirectAttributes redirectAttributes, HttpSession session) {
+
         logger.info("Tentativa de login com email: {}", email);
 
-        boolean isAuthenticated = firebaseAuthService.authenticate(email, password);
+        try {
+            // Recebe o token JWT do Firebase via Node API
+            String idToken = firebaseAuthService.authenticate(email, password);
 
-        if (isAuthenticated) {
-            return "redirect:/"; // Sucesso: redireciona para a página inicial
-        } else {
-            logger.warn("Falha na autenticação para o email: {}", email);
+            // Armazena na sessão
+            session.setAttribute("ID_TOKEN", idToken);
+
+            logger.info("Autenticação bem-sucedida. Token armazenado na sessão.");
+            return "redirect:/"; // sucesso
+
+        } catch (Exception e) {
+            logger.warn("Falha na autenticação para o email: {} - {}", email, e.getMessage());
             redirectAttributes.addFlashAttribute("error", "Email ou senha inválidos.");
-            return "redirect:/login"; // Falha: volta para a página de login com uma mensagem de erro
+            return "redirect:/login"; // falha
         }
     }
 }
