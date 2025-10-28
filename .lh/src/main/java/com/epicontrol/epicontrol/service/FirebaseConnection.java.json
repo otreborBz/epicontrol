@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/main/java/com/epicontrol/epicontrol/service/FirebaseConnection.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1761604670217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761604823008,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n package com.epicontrol.epicontrol.service;\n \n public class FirebaseConnection {\n+\n+  function \n   \n }\n"
+                },
+                {
+                    "date": 1761604831595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,13 +5,6 @@\n   function getColaboradores(){\n     return null;\n   }\n \n-  function getEpis(){\n-    return null;\n-  }\n-\n-  function getEntregas(){\n-    return null;\n-  }\n   \n }\n"
+                },
+                {
+                    "date": 1761604842417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n package com.epicontrol.epicontrol.service;\n \n public class FirebaseConnection {\n \n-  function getColaboradores(){\n-    return null;\n-  }\n \n+  public \n+\n   \n }\n"
+                }
+            ],
+            "date": 1761604670217,
+            "name": "Commit-0",
+            "content": "package com.epicontrol.epicontrol.service;\n\npublic class FirebaseConnection {\n  \n}\n"
+        }
+    ]
+}

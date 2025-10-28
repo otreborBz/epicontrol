@@ -129,11 +129,25 @@ table .actions a:hover {
   color: var(--color-dark);
 }
 
-.modal-form input {
+.modal-form input,
+.modal-form select {
   width: 100%;
   padding: 0.8rem;
   border: 1px solid #ccc;
   border-radius: 0.3rem;
+  background-color: white; /* Garante fundo branco para o select */
+}
+
+/* Novo: Estilo para agrupar campos lado a lado */
+.modal-form .form-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+/* Novo: Garante que os grupos dentro da linha ocupem o espaço corretamente */
+.modal-form .form-row .form-group {
+  flex: 1;
 }
 
 .form-actions {

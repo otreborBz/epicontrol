@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/main/java/com/epicontrol/epicontrol/model/ColaboradorModel.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1761604331239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761604339239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n package com.epicontrol.epicontrol.model;\n \n public class ColaboradorModel {\n-  \n+   \n }\n"
+                },
+                {
+                    "date": 1761604344356,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,12 @@\n package com.epicontrol.epicontrol.model;\n \n public class ColaboradorModel {\n    \n-  \n+\n+ private Long id;\n+    private String nome;\n+    private String cpf;\n+    private String funcao;\n+    private String setor;\n+\n }\n"
+                },
+                {
+                    "date": 1761604349964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n    \n \n  private Long id;\n     private String nome;\n-    private String cpf;\n+    private String re;\n     private String funcao;\n     private String setor;\n \n }\n"
+                }
+            ],
+            "date": 1761604331239,
+            "name": "Commit-0",
+            "content": "package com.epicontrol.epicontrol.model;\n\npublic class ColaboradorModel {\n  \n}\n"
+        }
+    ]
+}

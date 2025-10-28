@@ -30,11 +30,10 @@ public class FirebaseAuth {
 
     public String authenticate(String email, String password) { 
         if (apiAuthUrl == null || apiAuthUrl.trim().isEmpty()) {
-            logger.error("A URL da API de autenticação (api.auth.url) não está configurada.");
             throw new IllegalStateException("URL da API de autenticação não configurada.");
         }
 
-        String url = apiAuthUrl; // Usa a URL do seu backend Node.js
+        String url = apiAuthUrl;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -65,20 +64,18 @@ public class FirebaseAuth {
             if (tokenResponse.getIdToken() == null) {
                 throw new RuntimeException("Resposta do Firebase não continha um idToken.");
             }
+            logger.info("Token emcntrado: ", tokenResponse.getIdToken());
 
-            logger.info("✅ Autenticação bem-sucedida para o email: {}", email);
             return tokenResponse.getIdToken(); // Retorna apenas o token vindo do Node.js
         } catch (HttpClientErrorException e) {
             // Este bloco captura erros de HTTP (4xx, 5xx) onde o servidor Node respondeu com um status de erro.
-            logger.error("❌ Erro HTTP da API Node: Status: {}, Resposta: {}", e.getStatusCode(), e.getResponseBodyAsString());
             throw new RuntimeException("Falha na autenticação: " + e.getResponseBodyAsString(), e);
         } catch (JsonProcessingException e) {
             // Este bloco captura erros de conversão do JSON.
-            logger.error("❌ Falha ao converter a resposta da API Node. A resposta não é um JSON válido ou não corresponde ao formato esperado. Causa: {}", e.getMessage());
+           
             throw new RuntimeException("Resposta inválida do servidor de autenticação.", e);
         } catch (RestClientException e) {
             // Este bloco captura outros erros, como falha na conversão da resposta (JSON inválido).
-            logger.error("❌ Erro ao processar a resposta da API Node. Causa: {}", e.getMessage());
             throw new RuntimeException("Falha ao processar resposta do servidor de autenticação.", e);
         }
     }

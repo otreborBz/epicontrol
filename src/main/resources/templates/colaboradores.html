@@ -52,13 +52,12 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Exemplo de linha - será populado dinamicamente -->
-              <tr>
-                <td>Roberto Carvalho</td>
-                <td>12345</td>
-                <td>Desenvolvimento</td>
-                <td>Engenheiro de Software</td>
-                <td>26/10/2025</td>
+              <tr th:each="colaborador : ${colaboradores}">
+                <td th:text="${colaborador.nome}">Nome do Colaborador</td>
+                <td th:text="${colaborador.re}">RE do Colaborador</td>
+                <td th:text="${colaborador.setor}">Setor do Colaborador</td>
+                <td th:text="${colaborador.funcao}">Função do Colaborador</td>
+                <td th:text="${colaborador.data_admissao}">Data de Admissão</td>
                 <td class="actions">
                   <a href="#" title="Editar"><i class="fas fa-edit"></i></a>
                   <a href="#" title="Excluir"><i class="fas fa-trash"></i></a>
@@ -77,7 +76,7 @@
           <h2>Novo Colaborador</h2>
           <button id="close-modal-btn" class="close-button">&times;</button>
         </div>
-        <form action="/colaboradores/novo" method="post" class="modal-form">
+        <form action="/colaboradores" method="post" class="modal-form">
           <div class="form-group">
             <label for="nome">Nome Completo</label>
             <input type="text" id="nome" name="nome" required />
@@ -95,13 +94,45 @@
               required
             />
           </div>
-          <div class="form-group">
-            <label for="setor">Setor</label>
-            <input type="text" id="setor" name="setor" required />
-          </div>
-          <div class="form-group">
-            <label for="funcao">Função</label>
-            <input type="text" id="funcao" name="funcao" required />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="setor">Setor</label>
+              <select id="setor" name="setor" required>
+                <option value="">Selecione o Setor</option>
+                <option value="Produção">Produção</option>
+                <option value="Manutenção">Manutenção</option>
+                <option value="Logística">Logística</option>
+                <option value="Qualidade">Qualidade</option>
+                <option value="Administrativo">Administrativo</option>
+                <option value="Segurança do Trabalho">
+                  Segurança do Trabalho
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="funcao">Função</label>
+              <select id="funcao" name="funcao" required>
+                <option value="">Selecione a Função</option>
+                <option value="Operador de Máquinas">
+                  Operador de Máquinas
+                </option>
+                <option value="Técnico de Manutenção">
+                  Técnico de Manutenção
+                </option>
+                <option value="Almoxarife">Almoxarife</option>
+                <option value="Inspetor de Qualidade">
+                  Inspetor de Qualidade
+                </option>
+                <option value="Analista Administrativo">
+                  Analista Administrativo
+                </option>
+                <option value="Técnico de Segurança">
+                  Técnico de Segurança
+                </option>
+                <option value="Eletricista">Eletricista</option>
+                <option value="Mecânico">Mecânico</option>
+              </select>
+            </div>
           </div>
           <div class="form-actions">
             <button type="submit" class="btn btn-primary">Salvar</button>
