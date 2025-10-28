@@ -70,8 +70,64 @@ public class ColaboradorService {
             restTemplate.exchange(colaboradoresUrl, HttpMethod.POST, entity, String.class);
 
         } catch (Exception e) {
-            e.printStackTrace();
             throw new RuntimeException("Falha ao criar colaborador: " + e.getMessage(), e);
+        }
+    }
+
+    public void deletarColaborador(String id, String token) {
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + token);
+
+            HttpEntity<String> entity = new HttpEntity<>(headers);
+
+            String url = colaboradoresUrl + "/" + id;
+
+            restTemplate.exchange(url, HttpMethod.DELETE, entity, String.class);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Falha ao deletar colaborador: " + e.getMessage(), e);
+        }
+    }
+
+    public Map<String, Object> getColaboradorById(String id, String token) {
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + token);
+            HttpEntity<String> entity = new HttpEntity<>(headers);
+
+            String url = colaboradoresUrl + "/" + id;
+
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+
+            return objectMapper.readValue(response.getBody(), new TypeReference<Map<String, Object>>() {});
+
+        } catch (Exception e) {
+            throw new RuntimeException("Falha ao buscar colaborador por ID: " + e.getMessage(), e);
+        }
+    }
+
+    public void editarColaborador(String id, String nome, String re, String data_admissao, String setor, String funcao, String token){
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.set( "Authorization", "Bearer " + token);
+
+            Map<String, Object> requestBody = new HashMap<>();
+            requestBody.put("nome", nome);
+            requestBody.put("re", re);
+            requestBody.put("data_admissao", data_admissao);
+            requestBody.put("setor", setor);
+            requestBody.put("funcao", funcao);
+
+            HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
+
+            String url = colaboradoresUrl + "/" + id;
+
+            restTemplate.exchange(url, HttpMethod.PUT, entity, String.class);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Falha ao editar colaborador: " + e.getMessage(), e);
         }
     }
 }

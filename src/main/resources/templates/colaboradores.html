@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Ícones do Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
+
     <script>
       // Aplica o estado do menu imediatamente para evitar "flicker"
       (function () {
@@ -17,19 +17,16 @@
         }
       })();
     </script>
+
     <title>Colaboradores - EpiControl</title>
-    <!-- CSS do Layout Principal -->
     <link rel="stylesheet" th:href="@{/css/layout-sidebar.css}" />
-    <!-- CSS Específico da Página -->
     <link rel="stylesheet" th:href="@{/css/colaboradores.css}" />
   </head>
   <body>
     <div class="app-container">
-      <!-- Importa a sidebar, passando 'colaboradores' como a página ativa -->
       <div
         th:replace="~{fragments/layout :: sidebar(activePage='colaboradores')}"
       ></div>
-
       <main class="main-content">
         <div class="page-header">
           <h1>Gestão de Colaboradores</h1>
@@ -59,8 +56,23 @@
                 <td th:text="${colaborador.funcao}">Função do Colaborador</td>
                 <td th:text="${colaborador.data_admissao}">Data de Admissão</td>
                 <td class="actions">
-                  <a href="#" title="Editar"><i class="fas fa-edit"></i></a>
-                  <a href="#" title="Excluir"><i class="fas fa-trash"></i></a>
+                  <button
+                    type="button"
+                    class="edit-button open-edit-modal-btn"
+                    th:data-id="${colaborador.id}"
+                    title="Editar"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <!-- Botão que abre o modal de exclusão -->
+                  <button
+                    type="button"
+                    class="delete-button open-delete-modal-btn"
+                    th:data-id="${colaborador.id}"
+                    title="Excluir"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -138,6 +150,46 @@
             <button type="submit" class="btn btn-primary">Salvar</button>
           </div>
         </form>
+      </div>
+    </div>
+
+    <!-- Modal de Confirmação de Exclusão -->
+    <div id="delete-confirm-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Confirmar Exclusão</h2>
+          <button id="close-delete-modal-btn" class="close-button">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Tem certeza que deseja excluir este colaborador?</p>
+          <p>Esta ação não pode ser desfeita.</p>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel-delete-btn" class="btn btn-secondary">
+            Cancelar
+          </button>
+          <form
+            id="delete-confirm-form"
+            th:action="@{/colaboradores/delete}"
+            method="post"
+          >
+            <input
+              type="hidden"
+              id="colaborador-id-to-delete"
+              name="id"
+              value=""
+            />
+            <button
+              id="confirm-delete-btn"
+              type="submit"
+              class="btn btn-danger"
+            >
+              Excluir
+            </button>
+          </form>
+        </div>
       </div>
     </div>
 
