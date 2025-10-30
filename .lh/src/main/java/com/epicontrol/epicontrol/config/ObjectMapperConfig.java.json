@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/main/java/com/epicontrol/epicontrol/config/ObjectMapperConfig.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1761687446751,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761687455453,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,7 @@\n public class ObjectMapperConfig {\n \n     @Bean\n     public ObjectMapper objectMapper() {\n-        // Cria um ObjectMapper padrão. Você pode configurar aqui se quiser.\n         return new ObjectMapper();\n     }\n }\n"
+                }
+            ],
+            "date": 1761687446751,
+            "name": "Commit-0",
+            "content": "package com.epicontrol.epicontrol.config;\n\npublic class ObjectMapperConfig {\n  \n}\n"
+        }
+    ]
+}

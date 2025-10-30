@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ColaboradorModel {
-   
-    private Long id;
-    private String nome;
-    private String re;
-    private String funcao;
-    private String setor;
-    private LocalDate data_admissao;
+public class EpisModel {
 
+  private Long id;
+  private String nome;
+  private String ca;
+  private LocalDate validade;
+  private Integer quantidade;
+  private String createdAt;
+  
 }

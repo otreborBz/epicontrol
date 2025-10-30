@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/main/java/com/epicontrol/epicontrol/model/EpisModel.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1761682372033,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761682400248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n package com.epicontrol.epicontrol.model;\n \n public class EpisModel {\n+\n   \n+  \n }\n"
+                },
+                {
+                    "date": 1761682407125,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,12 @@\n package com.epicontrol.epicontrol.model;\n \n public class EpisModel {\n \n-  private Long \n+  private Long id;\n+    private String nome;\n+    private String tipo;\n+    private String ca;\n+    private String validade_ca;\n+\n   \n }\n"
+                },
+                {
+                    "date": 1761682413114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n package com.epicontrol.epicontrol.model;\n \n public class EpisModel {\n \n-  private Long id;\n+    private Long id;\n     private String nome;\n     private String tipo;\n     private String ca;\n     private String validade_ca;\n"
+                }
+            ],
+            "date": 1761682372033,
+            "name": "Commit-0",
+            "content": "package com.epicontrol.epicontrol.model;\n\npublic class EpisModel {\n  \n}\n"
+        }
+    ]
+}

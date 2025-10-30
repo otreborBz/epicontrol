@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/main/java/com/epicontrol/epicontrol/config/RestTemplateconfig.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1761683933472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761683938732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n package com.epicontrol.epicontrol.config;\n \n \n-@\n+@c\n public class RestTemplateconfig {\n   \n }\n"
+                },
+                {
+                    "date": 1761683945285,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n package com.epicontrol.epicontrol.config;\n \n \n-@confi\n+@config\n public class RestTemplateconfig {\n   \n }\n"
+                }
+            ],
+            "date": 1761683933472,
+            "name": "Commit-0",
+            "content": "package com.epicontrol.epicontrol.config;\n\npublic class RestTemplateconfig {\n  \n}\n"
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+{
+    "sourceFile": "src/main/java/com/epicontrol/epicontrol/controller/EpisController.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1761682327978,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1761684978484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,7 @@\n+package com.epicontrol.epicontrol.controller;\n+\n+\n+@\n+public class EpisController {\n+  \n+}\n"
+                },
+                {
+                    "date": 1761685004868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,11 @@\n package com.epicontrol.epicontrol.controller;\n \n+import org.springframework.beans.factory.annotation.Value;\n \n-@\n+@service\n public class EpisController {\n-  \n-}\n-package com.epicontrol.epicontrol.controller;\n \n-public class EpisController {\n+  @Value(\"${api.colaborador.url}\")\n+    private String colaboradoresUrl;\n   \n }\n"
+                },
+                {
+                    "date": 1761685011264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,8 @@\n \n @service\n public class EpisController {\n \n-  @Value(\"${api..url}\")\n+  @Value(\"${api.epi.url}\")\n     private String colaboradoresUrl;\n   \n }\n"
+                },
+                {
+                    "date": 1761685019023,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,7 +5,7 @@\n @service\n public class EpisController {\n \n   @Value(\"${api.epi.url}\")\n-    private String colaboradoresUrl;\n+    private String epUrl;\n   \n }\n"
+                }
+            ],
+            "date": 1761682327978,
+            "name": "Commit-0",
+            "content": "package com.epicontrol.epicontrol.controller;\n\npublic class EpisController {\n  \n}\n"
+        }
+    ]
+}

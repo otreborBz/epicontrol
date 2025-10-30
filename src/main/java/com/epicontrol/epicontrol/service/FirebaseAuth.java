@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -25,8 +26,16 @@ public class FirebaseAuth {
     @Value("${api.auth.url}") // 👉 Agora aponta para o endpoint da sua API Node
     private String apiAuthUrl;
 
+    private final ObjectMapper objectMapper;
     private final RestTemplate restTemplate = new RestTemplate();
     private static final Logger logger = LoggerFactory.getLogger(FirebaseAuth.class);
+
+    // Injetando o ObjectMapper configurado pelo Spring via construtor
+    @Autowired
+    public FirebaseAuth(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
+
 
     public String authenticate(String email, String password) { 
         if (apiAuthUrl == null || apiAuthUrl.trim().isEmpty()) {
@@ -58,8 +67,7 @@ public class FirebaseAuth {
             logger.info("📬 Resposta recebida da API Node: {}", responseBody);
 
             // 2. Tenta converter a String para o objeto esperado
-            ObjectMapper objectMapper = new ObjectMapper();
-            FirebaseTokenResponse tokenResponse = objectMapper.readValue(responseBody, FirebaseTokenResponse.class);
+            FirebaseTokenResponse tokenResponse = this.objectMapper.readValue(responseBody, FirebaseTokenResponse.class);
             
             if (tokenResponse.getIdToken() == null) {
                 throw new RuntimeException("Resposta do Firebase não continha um idToken.");

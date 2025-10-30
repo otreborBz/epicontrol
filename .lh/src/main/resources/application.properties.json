@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1761268406887,
@@ -52,6 +52,34 @@
                 {
                     "date": 1761605205374,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,10 @@\n+spring.application.name=epicontrol\r\n \r\n+# Desabilita o cache do Thymeleaf para ver as alterações em HTML imediatamente\r\n+spring.thymeleaf.cache=false\r\n \r\n+# URL do seu endpoint de autenticação no backend Node.js\r\n+api.auth.url=http://localhost:8081/api/auth/login\r\n+\r\n+# URL do endpoint de colaboradores\r\n+api.colaborador.url=http://localhost:8081/api/colaboradores\r\n"
+                },
+                {
+                    "date": 1761682694903,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,4 +7,6 @@\n api.auth.url=http://localhost:8081/api/auth/login\r\n \r\n # URL do endpoint de colaboradores\r\n api.colaborador.url=http://localhost:8081/api/colaboradores\r\n+\r\n+\r\n"
+                },
+                {
+                    "date": 1761682702513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,5 +8,5 @@\n \r\n # URL do endpoint de colaboradores\r\n api.colaborador.url=http://localhost:8081/api/colaboradores\r\n \r\n-\r\n+api\r\n"
+                },
+                {
+                    "date": 1761682710680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,5 +8,5 @@\n \r\n # URL do endpoint de colaboradores\r\n api.colaborador.url=http://localhost:8081/api/colaboradores\r\n \r\n-api\r\n+api.epi.url\r\n"
+                },
+                {
+                    "date": 1761682781890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,5 +8,5 @@\n \r\n # URL do endpoint de colaboradores\r\n api.colaborador.url=http://localhost:8081/api/colaboradores\r\n \r\n-api.epi.url\r\n+api.epi.url=http://localhost:8081/api/epis\r\n"
+                },
+                {
+                    "date": 1761682790089,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,5 +8,6 @@\n \r\n # URL do endpoint de colaboradores\r\n api.colaborador.url=http://localhost:8081/api/colaboradores\r\n \r\n+#\r\n api.epi.url=http://localhost:8081/api/epis\r\n"
+                },
+                {
+                    "date": 1761682796123,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,6 +8,6 @@\n \r\n # URL do endpoint de colaboradores\r\n api.colaborador.url=http://localhost:8081/api/colaboradores\r\n \r\n-#\r\n+# URL do endpoint de \r\n api.epi.url=http://localhost:8081/api/epis\r\n"
+                },
+                {
+                    "date": 1761846314457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,6 +8,6 @@\n \r\n # URL do endpoint de colaboradores\r\n api.colaborador.url=http://localhost:8081/api/colaboradores\r\n \r\n-# URL do endpoint de \r\n-api.epi.url=http://localhost:8081/api/epis\r\n+api.epi.url=http://localhost:8081/api/epis# URL do endpoint de EPIs\r\n+\r\n"
                 }
             ],
             "date": 1761268406887,

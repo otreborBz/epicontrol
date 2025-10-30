@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/java/com/epicontrol/epicontrol/config/EpisModel.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1761846725240,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1761846725240,
+            "name": "Commit-0",
+            "content": "package com.epicontrol.epicontrol.model;\n\nimport lombok.Data;\nimport java.time.LocalDateTime;\n\n@Data // Lombok para gerar getters, setters, etc.\npublic class EpisModel {\n    private String id;\n    private String nome;\n    private String ca;\n    private String validade; // Mantendo como String conforme o JSON original\n    private int quantidade;\n    private LocalDateTime createdAt;\n}"
+        }
+    ]
+}

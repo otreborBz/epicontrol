@@ -1,81 +1,166 @@
-/* Estilos para o cabeçalho da página */
+/* ===========================
+   Estilos Gerais da Página
+=========================== */
+
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.main-content {
+  padding: 2rem;
+  flex: 1;
+}
+
+/* ===========================
+   Cabeçalho da Página
+=========================== */
+
 .page-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
 }
 
+.page-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #222;
+  font-weight: 600;
+}
+
+/* ===========================
+   Botões
+=========================== */
+
 .btn {
-  padding: 0.8rem 1.5rem;
+  padding: 0.6rem 1.2rem;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
-  transition: background-color 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  transition: all 0.2s ease;
 }
 
 .btn-primary {
-  background-color: var(--color-primary);
-  color: white;
+  background-color: #007bff;
+  color: #fff;
 }
 
 .btn-primary:hover {
-  background-color: #5a67d8;
+  background-color: #0056b3;
 }
 
-/* Estilos da Tabela */
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #a71d2a;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #545b62;
+}
+
+/* ===========================
+   Tabela de EPIs
+=========================== */
+
 .table-container {
   background-color: #fff;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: var(--box-shadow);
-  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  animation: fade-in 0.3s ease;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  text-align: left;
+  font-size: 0.95rem;
 }
 
-table thead {
-  border-bottom: 2px solid #eee;
+table th,
+table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 table th {
-  padding: 1rem;
-  color: var(--nav-link-color);
+  background-color: #f8f9fa;
   font-weight: 600;
+  color: #555;
   text-transform: uppercase;
-  font-size: 0.85rem;
+  letter-spacing: 0.03em;
 }
 
-table td {
-  padding: 1rem;
-  border-bottom: 1px solid #eee;
-  color: var(--color-dark);
-}
-
-table tbody tr:last-child td {
+table tr:last-child td {
   border-bottom: none;
 }
 
-table .actions a {
-  color: var(--nav-link-color);
-  margin-right: 1rem;
+table tr:hover {
+  background-color: #f5f5f5;
+  transition: background-color 0.2s ease;
+}
+
+/* ===========================
+   Ações (Editar / Excluir)
+=========================== */
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-button,
+.delete-button {
+  border: none;
+  background: none;
+  cursor: pointer;
   font-size: 1.2rem;
+  transition: transform 0.15s ease, color 0.2s ease;
 }
 
-table .actions a:hover {
-  color: var(--color-primary);
+.edit-button {
+  color: #007bff;
 }
 
-/* Estilos do Modal */
+.edit-button:hover {
+  color: #0056b3;
+  transform: scale(1.1);
+}
+
+.delete-button {
+  color: #dc3545;
+}
+
+.delete-button:hover {
+  color: #a71d2a;
+  transform: scale(1.1);
+}
+
+/* ===========================
+   Modais
+=========================== */
+
 .modal {
   display: none; /* Oculto por padrão */
   position: fixed;
@@ -84,20 +169,26 @@ table .actions a:hover {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.45);
   justify-content: center;
   align-items: center;
+  overflow: auto;
+  transition: opacity 0.3s ease;
+}
+
+.modal.active {
+  display: flex;
+  animation: fade-in 0.3s ease;
 }
 
 .modal-content {
   background-color: #fff;
-  margin: auto;
   padding: 2rem;
-  border-radius: 0.5rem;
+  border-radius: 0.7rem;
   width: 90%;
   max-width: 500px;
   animation: slide-down 0.3s ease-out;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .modal-header {
@@ -109,14 +200,34 @@ table .actions a:hover {
   margin-bottom: 1.5rem;
 }
 
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #333;
+}
+
 .close-button {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   border: none;
   background: none;
   cursor: pointer;
   color: #aaa;
+  transition: color 0.2s ease;
 }
+
+.close-button:hover {
+  color: #333;
+}
+
+.modal-body p {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+/* ===========================
+   Formulário dentro do modal
+=========================== */
 
 .modal-form .form-group {
   margin-bottom: 1.5rem;
@@ -124,30 +235,63 @@ table .actions a:hover {
 
 .modal-form label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   font-weight: 500;
-  color: var(--color-dark);
+  color: #333;
 }
 
 .modal-form input {
   width: 100%;
   padding: 0.8rem;
   border: 1px solid #ccc;
-  border-radius: 0.3rem;
+  border-radius: 0.4rem;
+  box-sizing: border-box;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.modal-form input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
 }
 
 .form-actions {
   text-align: right;
   margin-top: 2rem;
 }
+/* ======== Rodapé do modal de exclusão ======== */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end; /* alinha os botões à direita */
+  gap: 1rem; /* espaço entre os botões */
+  margin-top: 1.5rem;
+}
+
+.modal-footer .btn {
+  min-width: 100px; /* deixa os botões proporcionais */
+}
+
+/* ===========================
+   Animações
+=========================== */
 
 @keyframes slide-down {
   from {
-    transform: translateY(-50px);
+    transform: translateY(-40px);
     opacity: 0;
   }
   to {
     transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
     opacity: 1;
   }
 }
