@@ -1,10 +1,8 @@
 package com.epicontrol.epicontrol.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +43,7 @@ public class EpiController {
     public String novoEpi(
             @RequestParam("nome") String nome,
             @RequestParam("ca") String ca,
-            @RequestParam("validade") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate validade,
+            @RequestParam("validade") String validade,
             @RequestParam("quantidade") Integer quantidade,
             HttpSession session) {
 
@@ -78,26 +76,27 @@ public class EpiController {
         return "redirect:/epis";
     }
 
-    @PostMapping("/epis/edit")
-    public String editar( 
-            @RequestParam("id") String id, 
-            @RequestParam("nome") String nome,
-            @RequestParam("ca") String ca,
-            @RequestParam("validade") LocalDate validade,
-            @RequestParam("quantidade") Integer quantidade,
-            HttpSession session) {
+@PostMapping("/epis/edit")
+public String editar( 
+        @RequestParam("id") String id, 
+        @RequestParam("nome") String nome,
+        @RequestParam("ca") String ca,
+        @RequestParam("validade") String validade,
+        @RequestParam("quantidade") Integer quantidade,
+        HttpSession session) {
 
-        String token = (String) session.getAttribute("ID_TOKEN");
-        if (token == null) {
-            return "redirect:/epis";
-        }
-        try {
-            episService.editar(id, nome, ca, validade, quantidade, token);
-        } catch (Exception e) {
-            
-        }
+    String token = (String) session.getAttribute("ID_TOKEN");
+    if (token == null) {
         return "redirect:/epis";
     }
+    try {
+        episService.editar(id, nome, ca, validade, quantidade, token);
+    } catch (Exception e) {
+        
+    }
+    return "redirect:/epis";
+}
+
 
     @GetMapping("/api/epis/{id}")
     @ResponseBody

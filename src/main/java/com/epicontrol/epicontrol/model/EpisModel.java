@@ -1,9 +1,5 @@
 package com.epicontrol.epicontrol.model;
 
-import java.time.LocalDate;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,9 +13,7 @@ public class EpisModel {
   private Long id;
   private String nome;
   private String ca;
-
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-  private LocalDate validade;
+  private String validade;
   private Integer quantidade;
   private String createdAt;
   

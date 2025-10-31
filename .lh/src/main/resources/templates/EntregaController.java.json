@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/resources/templates/EntregaController.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1761931780870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1761931780870,
+            "name": "Commit-0",
+            "content": "package com.epicontrol.epicontrol.controller;\n\nimport java.util.List;\nimport java.util.Map;\n\nimport org.springframework.stereotype.Controller;\nimport org.springframework.ui.Model;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.RequestMapping;\n\nimport com.epicontrol.epicontrol.service.ColaboradorService;\nimport com.epicontrol.epicontrol.service.EpisService;\n\nimport jakarta.servlet.http.HttpSession;\n\n@Controller\n@RequestMapping(\"/entregas\")\npublic class EntregaController {\n\n    private final ColaboradorService colaboradorService;\n    private final EpisService episService;\n\n    public EntregaController(ColaboradorService colaboradorService, EpisService episService) {\n        this.colaboradorService = colaboradorService;\n        this.episService = episService;\n    }\n\n    @GetMapping\n    public String paginaEntregas(Model model, HttpSession session) {\n        String token = (String) session.getAttribute(\"ID_TOKEN\");\n        if (token == null) {\n            return \"redirect:/login\";\n        }\n\n        List<Map<String, Object>> colaboradores = colaboradorService.listarColaboradoresComoLista(token);\n        List<Map<String, Object>> epis = episService.listar(token);\n\n        model.addAttribute(\"colaboradores\", colaboradores);\n        model.addAttribute(\"epis\", epis);\n\n        return \"entregas\";\n    }\n}"
+        }
+    ]
+}

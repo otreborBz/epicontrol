@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrar Entrega de EPI - EpiControl</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" th:href="@{/css/layout-sidebar.css}" />
+    <link rel="stylesheet" th:href="@{/css/entregas.css}" />
+    <script>
+      (function () {
+        const isCollapsed = localStorage.getItem("sidebarCollapsed") === "true";
+        if (isCollapsed) {
+          document.documentElement.classList.add("sidebar-collapsed");
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="app-container">
+      <div
+        th:replace="~{fragments/layout :: sidebar(activePage='entregas')}"
+      ></div>
+
+      <main class="main-content">
+        <div class="page-header">
+          <h1>Registrar Entrega de EPI</h1>
+        </div>
+
+        <!-- Mensagens de feedback -->
+        <div id="feedback-message" class="alert" style="display: none"></div>
+
+        <div class="form-container">
+          <form id="entrega-form" class="modal-form">
+            <div class="form-group">
+              <label for="colaboradorId">Colaborador</label>
+              <select id="colaboradorId" name="colaboradorId" required>
+                <option value="">Selecione um colaborador</option>
+                <option
+                  th:each="colaborador : ${colaboradores}"
+                  th:value="${colaborador.id}"
+                  th:text="${colaborador.nome} + ' (RE: ' + ${colaborador.re} + ')'"
+                ></option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="epiId">EPI</label>
+              <select id="epiId" name="epiId" required>
+                <option value="">Selecione um EPI</option>
+                <option
+                  th:each="epi : ${epis}"
+                  th:value="${epi.id}"
+                  th:text="${epi.nome} + ' (CA: ' + ${epi.ca} + ')'"
+                ></option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="quantidadeEntregue">Quantidade</label>
+              <input
+                type="number"
+                id="quantidadeEntregue"
+                name="quantidadeEntregue"
+                required
+                min="1"
+                value="1"
+              />
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                Registrar Entrega
+              </button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+
+    <script th:src="@{/js/layout.js}"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("entrega-form");
+        const feedbackMessage = document.getElementById("feedback-message");
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const formData = new FormData(form);
+          const data = {
+            colaboradorId: formData.get("colaboradorId"),
+            epiId: formData.get("epiId"),
+            quantidadeEntregue: parseInt(
+              formData.get("quantidadeEntregue"),
+              10
+            ),
+          };
+
+          try {
+            const response = await fetch("/api/entregas", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            });
+
+            feedbackMessage.style.display = "block";
+            if (response.ok) {
+              feedbackMessage.textContent = "Entrega registrada com sucesso!";
+              feedbackMessage.className = "alert alert-success";
+              form.reset();
+            } else {
+              const error = await response.text();
+              feedbackMessage.textContent = `Erro ao registrar entrega: ${
+                error || response.statusText
+              }`;
+              feedbackMessage.className = "alert alert-danger";
+            }
+          } catch (error) {
+            feedbackMessage.style.display = "block";
+            feedbackMessage.textContent =
+              "Erro de conexão ao registrar entrega.";
+            feedbackMessage.className = "alert alert-danger";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

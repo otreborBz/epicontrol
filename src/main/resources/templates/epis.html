@@ -64,8 +64,7 @@
               <tr th:each="epi : ${epis}">
                 <td th:text="${epi.nome}"></td>
                 <td th:text="${epi.ca}"></td>
-                <td th:text="${#temporals.format(epi.validade, 'dd/MM/yyyy')}"></td>
-
+                <td th:text="${epi.validade}"></td>
                 <td th:text="${epi.quantidade}"></td>
                 <td class="actions">
                   <!-- Botão de Edição -->

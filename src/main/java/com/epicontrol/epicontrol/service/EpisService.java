@@ -1,7 +1,7 @@
 package com.epicontrol.epicontrol.service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,22 +18,20 @@ import org.springframework.web.client.RestTemplate;
 import com.epicontrol.epicontrol.model.EpisModel;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @Service
 public class EpisService {
 
-  @Value("${api.epi.url}")
-  private String epiUrl;
+    @Value("${api.epi.url}")
+    private String epiUrl;
 
-  private final RestTemplate restTemplate = new RestTemplate();
-  private final ObjectMapper objectMapper = new ObjectMapper();
+    private final RestTemplate restTemplate = new RestTemplate();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
-  public EpisService() {
-    this.objectMapper.registerModule(new JavaTimeModule());
-  }
-
-public List<Map<String, Object>> listar(String token) {
+    /**
+     * Lista todos os EPIs e formata as datas para "dd/MM/yyyy".
+     */
+    public List<Map<String, Object>> listar(String token) {
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -53,16 +51,23 @@ public List<Map<String, Object>> listar(String token) {
                     new TypeReference<List<Map<String, Object>>>() {}
             );
 
-            // Converte o campo 'validade' de Array para LocalDate
+            // Formata a data de cada EPI
+            DateTimeFormatter firebaseFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter displayFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
             for (Map<String, Object> epi : epis) {
-                if (epi.get("validade") instanceof ArrayList) {
-                    List<Integer> dateParts = (List<Integer>) epi.get("validade");
-                    if (dateParts.size() >= 3) {
-                        LocalDate validade = LocalDate.of(dateParts.get(0), dateParts.get(1), dateParts.get(2));
-                        epi.put("validade", validade);
+                if (epi.get("validade") instanceof String) {
+                    String validadeStr = (String) epi.get("validade");
+                    try {
+                        LocalDate data = LocalDate.parse(validadeStr, firebaseFormatter);
+                        String validadeFormatada = data.format(displayFormatter);
+                        epi.put("validade", validadeFormatada);
+                    } catch (Exception e) {
+                        // mantém a string original se falhar a conversão
                     }
                 }
             }
+
             return epis;
 
         } catch (Exception e) {
@@ -71,92 +76,105 @@ public List<Map<String, Object>> listar(String token) {
         }
     }
 
-public void criar(String nome, String ca, LocalDate validade, Integer quantidade, String token) {
-    try {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", "Bearer " + token);
+    /**
+     * Cria um novo EPI.
+     */
+    public void criar(String nome, String ca, String validade, Integer quantidade, String token) {
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.set("Authorization", "Bearer " + token);
 
-        EpisModel request = new EpisModel();
-        request.setNome(nome);
-        request.setCa(ca);
-        request.setValidade(validade);
-        request.setQuantidade(quantidade);
+            EpisModel request = new EpisModel();
+            request.setNome(nome);
+            request.setCa(ca);
+            request.setValidade(validade); // validade agora é String
+            request.setQuantidade(quantidade);
 
-        HttpEntity<EpisModel> entity = new HttpEntity<>(request, headers);
+            HttpEntity<EpisModel> entity = new HttpEntity<>(request, headers);
+            restTemplate.exchange(epiUrl, HttpMethod.POST, entity, String.class);
 
-        restTemplate.exchange(epiUrl, HttpMethod.POST, entity, String.class);
-
-    } catch (Exception e) {
-        throw new RuntimeException("Falha ao criar EPI: " + e.getMessage(), e);
-    }
-}
-
-
-public void deletar(String id, String token) {
-    try {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + token);
-
-        HttpEntity<String> entity = new HttpEntity<>(headers);
-
-        String url = epiUrl + "/" + id;
-
-        restTemplate.exchange(url, HttpMethod.DELETE, entity, String.class);
-
-    } catch (Exception e) {
-        throw new RuntimeException("Falha ao deletar EPI: " + e.getMessage(), e);
-    }
-}
-
-public Map<String, Object> getById(String id, String token) {
-    try {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + token);
-        HttpEntity<String> entity = new HttpEntity<>(headers);
-
-        String url = epiUrl + "/" + id;
-
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-
-        Map<String, Object> epi = objectMapper.readValue(response.getBody(), new TypeReference<Map<String, Object>>() {});
-
-        // Converte o campo 'validade' de Array para LocalDate
-        if (epi != null && epi.get("validade") instanceof ArrayList) {
-            List<Integer> dateParts = (List<Integer>) epi.get("validade");
-            if (dateParts.size() >= 3) {
-                LocalDate validade = LocalDate.of(dateParts.get(0), dateParts.get(1), dateParts.get(2));
-                epi.put("validade", validade);
-            }
+        } catch (Exception e) {
+            throw new RuntimeException("Falha ao criar EPI: " + e.getMessage(), e);
         }
-
-        return epi;
-
-    } catch (Exception e) {
-        throw new RuntimeException("Falha ao buscar EPI por ID: " + e.getMessage(), e);
     }
-}
 
-public void editar(String id, String nome, String ca, LocalDate validade, Integer quantidade, String token){
-    try {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set( "Authorization", "Bearer " + token);
+    /**
+     * Deleta um EPI pelo ID.
+     */
+    public void deletar(String id, String token) {
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + token);
 
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("nome", nome);
-        requestBody.put("ca", ca);
-        requestBody.put("validade", validade);
-        requestBody.put("quantidade", quantidade);
+            HttpEntity<String> entity = new HttpEntity<>(headers);
+            String url = epiUrl + "/" + id;
+            restTemplate.exchange(url, HttpMethod.DELETE, entity, String.class);
 
-        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
-
-        String url = epiUrl + "/" + id;
-
-        restTemplate.exchange(url, HttpMethod.PUT, entity, String.class);
-
-    } catch (Exception e) {
-        throw new RuntimeException("Falha ao editar EPI: " + e.getMessage(), e);
+        } catch (Exception e) {
+            throw new RuntimeException("Falha ao deletar EPI: " + e.getMessage(), e);
+        }
     }
-}
+
+    /**
+     * Busca um EPI pelo ID e formata a data.
+     */
+    public Map<String, Object> getById(String id, String token) {
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + token);
+            HttpEntity<String> entity = new HttpEntity<>(headers);
+
+            String url = epiUrl + "/" + id;
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+
+            Map<String, Object> epi = objectMapper.readValue(
+                    response.getBody(),
+                    new TypeReference<Map<String, Object>>() {}
+            );
+
+            // Formata a data individual
+            DateTimeFormatter firebaseFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter displayFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            if (epi.get("validade") instanceof String) {
+                String validadeStr = (String) epi.get("validade");
+                try {
+                    LocalDate data = LocalDate.parse(validadeStr, firebaseFormatter);
+                    epi.put("validade", data.format(displayFormatter));
+                } catch (Exception e) {
+                    // mantém original se não for possível converter
+                }
+            }
+
+            return epi;
+
+        } catch (Exception e) {
+            throw new RuntimeException("Falha ao buscar EPI por ID: " + e.getMessage(), e);
+        }
+    }
+
+    /**
+     * Edita um EPI existente.
+     */
+    public void editar(String id, String nome, String ca, String validade, Integer quantidade, String token) {
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.set("Authorization", "Bearer " + token);
+
+            Map<String, Object> requestBody = new HashMap<>();
+            requestBody.put("nome", nome);
+            requestBody.put("ca", ca);
+            requestBody.put("validade", validade);
+            requestBody.put("quantidade", quantidade);
+
+            HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
+            String url = epiUrl + "/" + id;
+            restTemplate.exchange(url, HttpMethod.PUT, entity, String.class);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Falha ao editar EPI: " + e.getMessage(), e);
+        }
+    }
 }
