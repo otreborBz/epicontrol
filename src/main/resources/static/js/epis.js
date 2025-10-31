@@ -53,8 +53,14 @@ document.addEventListener("DOMContentLoaded", function () {
           modalForm.querySelector("#ca").value = data.ca || "";
           // A data vem como um array [ano, mes, dia], então formatamos para YYYY-MM-DD
           if (Array.isArray(data.validade) && data.validade.length >= 3) {
-            const [year, month, day] = data.validade;
-            modalForm.querySelector("#validade").value = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            const [year, month, day] = data.validade; // Ex: [2024, 12, 1]
+            modalForm.querySelector("#validade").value = `${year}-${String(
+              month
+            ).padStart(2, "0")}-${String(day).padStart(2, "0")}`; // Formata para "2024-12-01"
+          } else if (data.validade) {
+            // Se a data vier como string (ex: "2024-12-01"), apenas a atribui
+            // O split('T')[0] remove informações de hora, se houver
+            modalForm.querySelector("#validade").value = data.validade.split("T")[0];
           }
           modalForm.querySelector("#quantidade").value = data.quantidade || "";
           hiddenIdInput.value = data.id || "";

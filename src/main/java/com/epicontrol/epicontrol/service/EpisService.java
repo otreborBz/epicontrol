@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.epicontrol.epicontrol.model.EpisModel;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -76,13 +77,13 @@ public void criar(String nome, String ca, LocalDate validade, Integer quantidade
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set("Authorization", "Bearer " + token);
 
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("nome", nome);
-        requestBody.put("ca", ca);
-        requestBody.put("validade", validade);
-        requestBody.put("quantidade", quantidade);
+        EpisModel request = new EpisModel();
+        request.setNome(nome);
+        request.setCa(ca);
+        request.setValidade(validade);
+        request.setQuantidade(quantidade);
 
-        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
+        HttpEntity<EpisModel> entity = new HttpEntity<>(request, headers);
 
         restTemplate.exchange(epiUrl, HttpMethod.POST, entity, String.class);
 
@@ -90,6 +91,7 @@ public void criar(String nome, String ca, LocalDate validade, Integer quantidade
         throw new RuntimeException("Falha ao criar EPI: " + e.getMessage(), e);
     }
 }
+
 
 public void deletar(String id, String token) {
     try {

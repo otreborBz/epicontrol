@@ -3,14 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- Ícones do Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
 
+    <!-- Aplica o estado do menu imediatamente para evitar "flicker" -->
     <script>
-      // Aplica o estado do menu imediatamente para evitar "flicker"
       (function () {
         const isCollapsed = localStorage.getItem("sidebarCollapsed") === "true";
         if (isCollapsed) {
@@ -20,23 +21,30 @@
     </script>
 
     <title>EPIs - EpiControl</title>
-    <!-- CSS específico da página de EPIs -->
+
+    <!-- CSS específico da página -->
     <link rel="stylesheet" th:href="@{/css/epis.css}" />
     <link rel="stylesheet" th:href="@{/css/layout-sidebar.css}" />
   </head>
+
   <body>
     <div class="app-container">
-      <!-- Importa a sidebar, passando 'epis' como a página ativa -->
+      <!-- Importa a sidebar, passando 'epis' como página ativa -->
       <div th:replace="~{fragments/layout :: sidebar(activePage='epis')}"></div>
 
       <main class="main-content">
         <div class="page-header">
           <h1>Gestão de EPIs</h1>
+
           <!-- Botão para abrir o modal de novo EPI -->
-          <button id="open-modal-btn" class="btn btn-primary">
+          <button id="open-modal-btn" class="btn btn-primary" aria-label="Novo EPI">
             <i class="fas fa-plus"></i> Novo EPI
           </button>
         </div>
+
+        <!-- Mensagens de sucesso/erro -->
+        <div th:if="${mensagem}" class="alert alert-success" th:text="${mensagem}"></div>
+        <div th:if="${erro}" class="alert alert-danger" th:text="${erro}"></div>
 
         <!-- Tabela de EPIs -->
         <div class="table-container">
@@ -50,14 +58,14 @@
                 <th>Ações</th>
               </tr>
             </thead>
+
             <tbody>
-              <!-- Loop para exibir os EPIs recebidos do controller -->
+              <!-- Loop dos EPIs -->
               <tr th:each="epi : ${epis}">
                 <td th:text="${epi.nome}"></td>
                 <td th:text="${epi.ca}"></td>
-                <td
-                  th:text="${#temporals.format(epi.validade, 'dd/MM/yyyy')}"
-                ></td>
+                <td th:text="${#temporals.format(epi.validade, 'dd/MM/yyyy')}"></td>
+
                 <td th:text="${epi.quantidade}"></td>
                 <td class="actions">
                   <!-- Botão de Edição -->
@@ -65,21 +73,25 @@
                     type="button"
                     class="edit-button open-edit-modal-btn"
                     th:data-id="${epi.id}"
-                    title="Editar"
+                    title="Editar EPI"
+                    aria-label="Editar EPI"
                   >
                     <i class="fas fa-edit"></i>
                   </button>
+
                   <!-- Botão de Exclusão -->
                   <button
                     type="button"
                     class="delete-button open-delete-modal-btn"
                     th:data-id="${epi.id}"
-                    title="Excluir"
+                    title="Excluir EPI"
+                    aria-label="Excluir EPI"
                   >
                     <i class="fas fa-trash"></i>
                   </button>
                 </td>
               </tr>
+
               <!-- Mensagem para quando não houver EPIs -->
               <tr th:if="${#lists.isEmpty(epis)}">
                 <td colspan="5" style="text-align: center">
@@ -97,25 +109,31 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2>Novo EPI</h2>
-          <button id="close-modal-btn" class="close-button">&times;</button>
+          <button id="close-modal-btn" class="close-button" aria-label="Fechar modal">
+            &times;
+          </button>
         </div>
-        <!-- O formulário será enviado para o endpoint de criação que você definirá no controller -->
-        <form action="/epis" method="post" class="modal-form">
+
+        <!-- Formulário de cadastro -->
+        <form th:action="@{/epis}" method="post" class="modal-form">
           <div class="form-group">
-            <label for="nome">Nome do EPI</label
-            ><input type="text" id="nome" name="nome" required />
+            <label for="nome">Nome do EPI</label>
+            <input type="text" id="nome" name="nome" required />
           </div>
+
           <div class="form-group">
-            <label for="ca">CA (Certificado de Aprovação)</label
-            ><input type="text" id="ca" name="ca" required />
+            <label for="ca">CA (Certificado de Aprovação)</label>
+            <input type="text" id="ca" name="ca" required />
           </div>
+
           <div class="form-group">
-            <label for="validade">Validade</label
-            ><input type="date" id="validade" name="validade" required />
+            <label for="validade">Validade</label>
+            <input type="date" id="validade" name="validade" required />
           </div>
+
           <div class="form-group">
-            <label for="quantidade">Quantidade em Estoque</label
-            ><input
+            <label for="quantidade">Quantidade em Estoque</label>
+            <input
               type="number"
               id="quantidade"
               name="quantidade"
@@ -123,6 +141,7 @@
               min="0"
             />
           </div>
+
           <div class="form-actions">
             <button type="submit" class="btn btn-primary">Salvar</button>
           </div>
@@ -135,29 +154,28 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2>Confirmar Exclusão</h2>
-          <button id="close-delete-modal-btn" class="close-button">
+          <button
+            id="close-delete-modal-btn"
+            class="close-button"
+            aria-label="Fechar modal"
+          >
             &times;
           </button>
         </div>
+
         <div class="modal-body">
           <p>Tem certeza que deseja excluir este EPI?</p>
           <p>Esta ação não pode ser desfeita.</p>
         </div>
+
         <div class="modal-footer">
           <button id="cancel-delete-btn" class="btn btn-secondary">
             Cancelar
           </button>
-          <form
-            id="delete-confirm-form"
-            th:action="@{/epis/delete}"
-            method="post"
-          >
+
+          <form id="delete-confirm-form" th:action="@{/epis/delete}" method="post">
             <input type="hidden" id="epi-id-to-delete" name="id" value="" />
-            <button
-              id="confirm-delete-btn"
-              type="submit"
-              class="btn btn-danger"
-            >
+            <button id="confirm-delete-btn" type="submit" class="btn btn-danger">
               Excluir
             </button>
           </form>
@@ -165,7 +183,8 @@
       </div>
     </div>
 
-    <script th:src="@{/js/layout.js}"></script>
-    <script th:src="@{/js/epis.js}"></script>
+    <!-- Scripts -->
+    <script th:src="@{/js/layout.js?v=1.0}"></script>
+    <script th:src="@{/js/epis.js?v=1.0}"></script>
   </body>
 </html>
